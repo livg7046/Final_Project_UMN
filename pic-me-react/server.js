@@ -1,25 +1,45 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
-const routes = require("./routes");
-const app = express();
-const PORT = process.env.PORT || 3001;
+var express = require("express");
+var bodyParser = require("body-parser");
+var logger = require("morgan");
+var mongoose = require("mongoose");
 
-// Define middleware here
+var PORT = 3000;
+
+// Requiring the `User` model for accessing the `users` collection
+var db = require("./models");
+
+// Initialize Express
+var app = express();
+
+// Configure middleware
+
+// Use morgan logger for logging requests
+app.use(logger("dev"));
+// Use body-parser for handling form submissions
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-// Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
-// Add routes, both API and view
-app.use(routes);
+// Use express.static to serve the public folder as a static directory
+app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/pic-me");
+mongoose.connect("mongodb://localhost/PicMedb");
 
-// Start the API server
+// Routes
+
+// Route to post our form submission to mongoDB via mongoose
+app.post("/submit", function(req, res) {
+  // Create a new user using req.body
+  User.create(req.body)
+    .then(function(dbUser) {
+      // If saved successfully, send the the new User document to the client
+      res.json(dbUser);
+    })
+    .catch(function(err) {
+      // If an error occurs, send the error to the client
+      res.json(err);
+    });
+});
+
+// Start the server
 app.listen(PORT, function() {
-  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+  console.log("App running on port " + PORT + "!");
 });
