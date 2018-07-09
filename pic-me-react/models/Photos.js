@@ -1,8 +1,8 @@
-const mongoose = require("mongoose");
+var mongoose = require("mongoose");
 
-const Schema = mongoose.Schema; 
+var Schema = mongoose.Schema; 
 
-const PhotosSchema = new Schema({
+var PhotosSchema = new Schema({
     url: {
         type: String, 
         require: true
@@ -26,6 +26,5 @@ const PhotosSchema = new Schema({
     }
 });
 
-const Photos = mongoose.model("Photos", PhotosSchema);
 
-module.exports = Photos; 
+module.exports = PhotosSchema; 
