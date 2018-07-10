@@ -1,16 +1,15 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const routes = require("./routes/apiRoutes");
-const logger = require("morgan");
-const mongoose = require("mongoose");
+var express = require("express");
+var bodyParser = require("body-parser");
+var logger = require("morgan");
+var mongoose = require("mongoose");
 
 const PORT = process.env.PORT || 3001;
 
 // Requiring the `User` model for accessing the `users` collection
-const db = require("./models");
+var db = require("./models");
 
 // Initialize Express
-const app = express();
+var app = express();
 
 // Configure middleware
 
@@ -20,15 +19,11 @@ app.use(logger("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
-// Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
+
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/PicMedb");
+mongoose.connect("mongodb://localhost/PicMedb");
 
 // Routes
-app.use("/api", routes);
 
 // Route to post our form submission to mongoDB via mongoose
 app.post("/submit", function(req, res) {
