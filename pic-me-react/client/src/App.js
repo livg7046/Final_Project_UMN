@@ -28,17 +28,16 @@ class App extends Component {
       ]
   }
   randomQuestion(array) {
-    let j = array[Math.floor(Math.random()*array.length)];
+    let j = [Math.floor(Math.random()*array.length)];
+    console.log(j);
     let question = this.state.questions[j];
     return question;
   }
   render() {
-    this.randomQuestion(this.state.questions);
-    console.log(this.state.question);
+    this.state.question = (this.randomQuestion(this.state.questions)).question;
     return (
       <div className="App">
         <nav className="App-header">
-          {/* <img src={logo} className="App-logo" alt="logo" /> */}
           <h1 className="App-title">Pic Me!</h1>
         </nav>
         <div className="container">
