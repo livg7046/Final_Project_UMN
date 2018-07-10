@@ -26,10 +26,13 @@ class App extends Component {
         "id": 5,
       }
       ]
-  }
+  };
   randomQuestion(array) {
-    let j = array[Math.floor(Math.random()*array.length)];
-    let question = this.state.questions[j];
+    let question = array[Math.floor(Math.random()*array.length)] ;
+    // let question = this.state.questions[j];
+    console.log(question);
+    // console.log(j);
+    
     return question;
   }
   render() {
@@ -43,7 +46,7 @@ class App extends Component {
         </nav>
         <div className="container">
           <p>
-            {this.state.question}
+            hereeee{this.state.question}
           </p>
           <form>
             <label> Answer:
