@@ -33,7 +33,7 @@ class App extends Component {
     return question;
   }
   render() {
-    this.randomQuestion(this.state.questions);
+    this.state.question = this.randomQuestion(this.state.questions);
     console.log(this.state.question);
     return (
       <div className="App">
