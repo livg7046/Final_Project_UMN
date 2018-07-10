@@ -3,7 +3,7 @@ var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
 
-var PORT = 3000;
+const PORT = process.env.PORT || 3001;
 
 // Requiring the `User` model for accessing the `users` collection
 var db = require("./models");
