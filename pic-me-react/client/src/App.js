@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Test from "./pages/Test";
 import './App.css';
 
 class App extends Component {
@@ -38,7 +37,6 @@ class App extends Component {
     console.log(this.state.question);
     return (
       <div className="App">
-        <Test />
         <nav className="App-header">
           {/* <img src={logo} className="App-logo" alt="logo" /> */}
           <h1 className="App-title">Pic Me!</h1>
