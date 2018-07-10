@@ -24,6 +24,8 @@ app.use(express.static("public"));
 mongoose.connect("mongodb://localhost/PicMedb");
 
 // Routes
+const routes = require("./routes");
+app.use(routes);
 
 // Route to post our form submission to mongoDB via mongoose
 app.post("/submit", function(req, res) {
