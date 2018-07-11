@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
+import Test from "./pages/Test";
+import Nav from "./components/Nav";
+import MainContainer from './pages/QuestionPage';
 
 class App extends Component {
   state = {
@@ -28,34 +31,18 @@ class App extends Component {
       ]
   };
   randomQuestion(array) {
-    let question = array[Math.floor(Math.random()*array.length)] ;
-    // let question = this.state.questions[j];
-    console.log(question);
-    // console.log(j);
-    
+    let j = [Math.floor(Math.random()*array.length)];
+    console.log(j);
+    let question = this.state.questions[j];
     return question;
   }
   render() {
-    this.state.question = this.randomQuestion(this.state.questions);
-    console.log(this.state.question);
+    this.state.question = (this.randomQuestion(this.state.questions)).question;
     return (
       <div className="App">
-        <nav className="App-header">
-          {/* <img src={logo} className="App-logo" alt="logo" /> */}
-          <h1 className="App-title">Pic Me!</h1>
-        </nav>
-        <div className="container">
-          <p>
-            hereeee{this.state.question}
-          </p>
-          <form>
-            <label> Answer:
-            <input type="text" name="name" />
-            </label>
-            
-          </form>
-          <button id="getDaily">Get Daily</button>
-        </div>
+        <Nav />
+        <MainContainer question={this.state.question}/>
+        <Test />
       </div>
     );
   }
