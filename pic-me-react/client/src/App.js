@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.css';
 import Test from "./pages/Test";
 import Nav from "./components/Nav";
-import MainContainer from './pages/QuestionPage';
+import Question from './pages/QuestionPage';
+import Wrapper from "./components/Wrapper";
 
 class App extends Component {
   state = {
@@ -28,22 +30,36 @@ class App extends Component {
         "question": "What is the scariest thing you've ever done?",
         "id": 5,
       }
-      ]
+    ]
   };
   randomQuestion(array) {
-    let j = [Math.floor(Math.random()*array.length)];
+    let j = Math.floor(Math.random() * array.length);
     console.log(j);
     let question = this.state.questions[j];
     return question;
   }
   render() {
-    this.state.question = (this.randomQuestion(this.state.questions)).question;
+    var question = (this.randomQuestion(this.state.questions)).question;
     return (
+    //   <Router>
+    //     <div className="App">
+    //       <Nav />
+    //       <Wrapper />
+    //       {/* <Question question={this.state.question}/> */}
+    //       <Route exact path="/question" component={Question} />
+    //     </Wrapper>
+    //     <Test />
+    //   </div>
+    //   </Router >
+    <Router>
       <div className="App">
-        <Nav />
-        <MainContainer question={this.state.question}/>
-        <Test />
+        <Nav/>
+        <Wrapper>
+           <Route exact path="/question" render={() => <Question question={question}/>} />
+        </Wrapper>
+        <Test/>
       </div>
+    </Router>
     );
   }
 }
