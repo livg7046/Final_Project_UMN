@@ -3,8 +3,14 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.css';
 import Test from "./pages/Test";
 import Nav from "./components/Nav";
+
 import Question from './pages/QuestionPage';
 import Wrapper from "./components/Wrapper";
+
+import Login from "./pages/LoginPage/login";
+import NewUserForm from "./pages/LoginPage/newUserForm";
+
+
 
 class App extends Component {
   state = {
@@ -53,11 +59,19 @@ class App extends Component {
     //   </Router >
     <Router>
       <div className="App">
+
         <Nav/>
         <Wrapper>
            <Route exact path="/question" render={() => <Question question={question}/>} />
         </Wrapper>
         <Test/>
+
+
+        <br></br>
+        <Login />
+        <br></br>
+        <NewUserForm />
+
       </div>
     </Router>
     );
