@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import Test from "./pages/Test";
 import Nav from "./components/Nav";
+import Login from "./pages/LoginPage/login";
+import NewUserForm from "./pages/LoginPage/newUserForm";
 import MainContainer from './pages/QuestionPage';
 
 class App extends Component {
@@ -43,6 +45,10 @@ class App extends Component {
         <Nav />
         <MainContainer question={this.state.question}/>
         <Test />
+        <br></br>
+        <Login />
+        <br></br>
+        <NewUserForm />
       </div>
     );
   }
