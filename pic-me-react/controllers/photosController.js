@@ -18,4 +18,7 @@ module.exports = {
         .update(newComment)
         .then(/*whatever response here*/)
   },
+  findById: function() {},
+  update: function() {},
+  remove: function() {}
 }
