@@ -8,7 +8,7 @@ import Question from './pages/QuestionPage';
 import Wrapper from "./components/Wrapper";
 
 import Login from "./pages/LoginPage/login";
-import NewUserForm from "./pages/LoginPage/newUserForm";
+import NewUserForm from "./pages/NewUserPage/newUserForm";
 
 
 
@@ -62,16 +62,11 @@ class App extends Component {
 
         <Nav/>
         <Wrapper>
-           <Route exact path="/question" render={() => <Question question={question}/>} />
+          <Route exact path="/newuser" render={() => <NewUserForm />} />
+          <Route exact path="/login" render={() => <Login />} />
+          <Route exact path="/question" render={() => <Question question={question}/>} />
+          <Route exact path="/test" render={() => <Test />} />
         </Wrapper>
-        <Test/>
-
-
-        <br></br>
-        <Login />
-        <br></br>
-        <NewUserForm />
-
       </div>
     </Router>
     );
