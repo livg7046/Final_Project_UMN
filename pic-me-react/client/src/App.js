@@ -4,49 +4,32 @@ import './App.css';
 import Test from "./pages/Test";
 import Nav from "./components/Nav";
 import Title from "./components/Title";
-
 import Question from './pages/QuestionPage';
 import Wrapper from "./components/Wrapper";
-
 import Login from "./pages/LoginPage/Login";
 import NewUser from "./pages/NewUserPage/NewUser";
 
-
-
 class App extends Component {
   state = {
-    question: "What is your favorite Movie?",
-    questions: [
-      {
-        "question": "Who is your favorite Celebrity?",
-        "id": 1,
-      },
-      {
-        "question": "What did you dream about late night?",
-        "id": 2,
-      },
-      {
-        "question": "What are you doing today?",
-        "id": 3,
-      },
-      {
-        "question": "What is your favorite food?",
-        "id": 4,
-      },
-      {
-        "question": "What is the scariest thing you've ever done?",
-        "id": 5,
-      }
-    ]
+    question: ""
   };
-  randomQuestion(array) {
-    let j = Math.floor(Math.random() * array.length);
-    console.log(j);
-    let question = this.state.questions[j];
-    return question;
-  }
+
+  componentDidMount = () => {
+    // this.setState( { question: _.shuffle(QuestionsData)})
+
+    const random = (arr) => Math.floor(Math.random() * arr.length)
+    this.setState( { question: QuestionsData[random(QuestionsData)].text }, () => console.log(this.state.question) )
+
+  };
+
+  // randomQuestion(array) {
+  //   let j = Math.floor(Math.random() * array.length);
+  //   console.log(j);
+  //   let question = this.state.questions[j];
+  //   return question;
+  // }
   render() {
-    var question = (this.randomQuestion(this.state.questions)).question;
+    // var question = (this.randomQuestion(this.state.questions)).question;
     return (
     //   <Router>
     //     <div className="App">
@@ -64,7 +47,7 @@ class App extends Component {
           <Title/>
           <Route exact path="/newuser" render={() => <NewUser />} />
           <Route exact path="/login" render={() => <Login />} />
-          <Route exact path="/question" render={() => <Question question={question}/>} />
+          <Route exact path="/question" render={() => <Question question={this.state.question}/>} />
           <Route exact path="/test" render={() => ( <div><Nav /><Test /></div>) } />
         </Wrapper>
       </div>

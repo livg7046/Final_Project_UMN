@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema; 
 
-const PhotosSchema = new Schema({
+const PhotoSchema = new Schema({
     url: {
         type: String, 
         require: true
@@ -21,11 +21,12 @@ const PhotosSchema = new Schema({
     reactions: {
         type: Array
     },
-    comments: {
-        type: Array
+    comment: {
+        type: Schema.Types.ObjectId,
+        ref: "Comment"
     }
 });
 
-const Photos = mongoose.model("Photos", PhotosSchema);
+const Photo = mongoose.model("Photo", PhotoSchema);
 
-module.exports = Photos; 
+module.exports = Photo; 

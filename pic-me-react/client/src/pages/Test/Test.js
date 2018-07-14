@@ -1,6 +1,6 @@
 import React from "react";
 import API from "../../utils/API";
-import ImageCard from "../../components/ImageCard";
+// import ImageCard from "../../components/ImageCard";
 import LikeBtn from "../../components/LikeBtn";
 import DislikeBtn from "../../components/DislikeBtn";
 
@@ -9,38 +9,34 @@ class Test extends React.Component {
     state = {
         search:"",
         photo: "https://vignette.wikia.nocookie.net/uncyclopedia/images/0/01/DramaticQuestionMark.png/revision/latest?cb=20060419021703",
-        pics: [],
     };
-
-    // handleFormSubmit = event => {
-    //     event.preventDefault();
-    //     console.log("Searching...");
-    //     API.getRandomGif(this.state.search)
-    //         .then(res => 
-    //             this.setState( { photo: res.data.data[0].images.original.url } )     
-    //         )
-    //         console.log(this.state.photo)
-    // };
-
+    
     handleFormSubmit = event => {
+
         event.preventDefault();
+
         console.log("Searching...");
+
         API.getManyGif(this.state.search)
             .then(res => {
+                console.log(res.data.data)
                 const randomGiphy = (arr) => Math.floor(Math.random() * arr.length)
                 this.setState( { photo: res.data.data[randomGiphy(res.data.data)].images.original.url }, () => console.log(this.state.photo))
             })
     };
 
     handleInputChange = event => {
+
         this.setState({search: event.target.value})
     };
 
-    likeGif = event => {
+    likeGif = () => {
+
         console.log("Liked");
     };
 
-    dislikeGif = event => {
+    dislikeGif = () => {
+
         console.log("DisLiked");
     };
 
@@ -66,11 +62,11 @@ class Test extends React.Component {
                 </button>
                 <div>
                     <img
-                        alt="Question Mark"
+                        alt="404 Please Search Again"
                         src={this.state.photo}
                     />
                     {/* <ImageCard
-                        image = {this.state.photo}
+                        src = {this.state.photo}
                     /> */}
                 </div>
                 <div>
