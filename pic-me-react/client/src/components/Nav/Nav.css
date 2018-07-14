@@ -4,6 +4,8 @@ h1 {
 
 .btn-group {
     width: 100%;
+    border: yellow;
+    border-width:  5px;
 }
 
 .btn {
