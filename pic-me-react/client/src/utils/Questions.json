@@ -38,5 +38,65 @@
     {
         "text": "What is your first name?",
         "id":10
+    },
+    {
+        "text": "What is your favorite drink?",
+        "id": 11
+    },
+    {
+        "text": "What makes you happy?",
+        "id": 12
+    },
+    {
+        "text": "What is your favorite season?",
+        "id": 13
+    },
+    {
+        "text": "What is your favorite sport?",
+        "id": 14
+    },
+    {
+        "text": "What is your favorite holiday?",
+        "id": 15
+    },
+    {
+        "text": "What is your biggest pet peeve?",
+        "id": 16
+    },
+    {
+        "text": "What is your favorite cookie?",
+        "id": 17
+    },
+    {
+        "text": "Who is your favorite superhero?",
+        "id": 18
+    },
+    {
+        "text": "If you could have any superpower what would it be?",
+        "id": 19
+    },
+    {
+        "text": "Least favorite thing to do that you should do?",
+        "id": 20
+    },
+    {
+        "text": "What is you favorite TV show?",
+        "id": 21
+    },
+    {
+        "text": "What is your dream car?",
+        "id": 22
+    },
+    {
+        "text": "If you were stranded on an island, who would you want to be with?",
+        "id": 23
+    },
+    {
+        "text": "What was your favorite cartoon as a kid?",
+        "id": 24
+    },
+    {
+        "text": "What is your favorite beer?",
+        "id": 25
     }
 ]
