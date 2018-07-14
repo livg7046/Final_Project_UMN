@@ -2,10 +2,7 @@ import React from "react";
 import "./Nav.css";
 
 const Nav = () => (
-    <nav className=" nav navbar navbar-dark bg-dark">
-            <h1>
-                PicMe
-            </h1>
+    <nav className=" nav navbar navbar-dark">
         <div className="container">
             <div className="btn-group btn-group-lg" role="group" aria-label="User-Nav">
                 <button type="button" className="btn btn-dark" aria-label="Globe">

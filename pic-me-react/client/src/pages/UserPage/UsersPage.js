@@ -1,6 +1,8 @@
 import React from "react";
 import Nav from "../../components/Nav";
 import ImageCard from "../../components/ImageCard/ImageCard";
+import CommentForm from "../../components/CommentForm";
+
 
 const UserPage = props => {
     console.log(props)
@@ -9,7 +11,7 @@ const UserPage = props => {
         <div className="container">
             <Nav />
             <ImageCard />
-            <h2>""COMMENT FORM GOES HERE"</h2>
+            <CommentForm />
     
             {/* <div class="form-check">
                 <label class="form-check-label">

@@ -3,7 +3,7 @@ import Nav from "../../components/Nav";
 
 const Question = props => {
     console.log(props)
-
+    
     return (
         <div className="container">
             <Nav />

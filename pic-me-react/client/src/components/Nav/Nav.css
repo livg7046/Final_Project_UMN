@@ -11,3 +11,10 @@ h1 {
 .btn {
     width: 50%;
 }
+
+.btn-dark {
+    color: #fff;
+    background-color: rgb(13, 26, 202);
+    border-color: black;
+    border-width: 2px;
+}

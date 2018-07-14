@@ -9,6 +9,9 @@ import Wrapper from "./components/Wrapper";
 import Login from "./pages/LoginPage/Login";
 import NewUser from "./pages/NewUserPage/NewUser";
 import UserPage from "./pages/UserPage";
+import QuestionsData from "./utils/Questions.json";
+import GlobalPage from './pages/Global/Global';
+
 
 class App extends Component {
   state = {
@@ -51,6 +54,7 @@ class App extends Component {
           <Route exact path="/question" render={() => <Question question={this.state.question}/>} />
           <Route exact path="/test" render={() => ( <div><Nav /><Test /></div>) } />
           <Route exact path="/UserPage" render={() => ( <div><UserPage /></div>) } />
+          <Route exact path="/Global" render={() => ( <div><GlobalPage /></div>) } />
         </Wrapper>
       </div>
     </Router>
