@@ -3,13 +3,11 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.css';
 import Test from "./pages/Test";
 import Nav from "./components/Nav";
+import Title from "./components/Title";
 import Question from './pages/QuestionPage';
 import Wrapper from "./components/Wrapper";
-import Login from "./pages/LoginPage/login";
-import NewUserForm from "./pages/LoginPage/newUserForm";
-import QuestionsData from './utils/Questions.json';
-// import _ from "underscore";
-
+import Login from "./pages/LoginPage/Login";
+import NewUser from "./pages/NewUserPage/NewUser";
 
 class App extends Component {
   state = {
@@ -45,19 +43,13 @@ class App extends Component {
     //   </Router >
     <Router>
       <div className="App">
-
-        <Nav/>
         <Wrapper>
-            <Route exact path="/question" render={() => <Question question={this.state.question}/>} />
+          <Title/>
+          <Route exact path="/newuser" render={() => <NewUser />} />
+          <Route exact path="/login" render={() => <Login />} />
+          <Route exact path="/question" render={() => <Question question={this.state.question}/>} />
+          <Route exact path="/test" render={() => ( <div><Nav /><Test /></div>) } />
         </Wrapper>
-        <Test/>
-
-
-        <br></br>
-        <Login />
-        <br></br>
-        <NewUserForm />
-
       </div>
     </Router>
     );

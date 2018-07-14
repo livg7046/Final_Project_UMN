@@ -1,8 +1,9 @@
 import React from "react";
 
 const NewUserForm = () => (
-    <div className="jumbotron">
-    <h2>New User Form</h2>
+    <div className="container">
+    <br></br>
+    <h3>Create a New Account</h3>
     <br></br>
     <form>
         <div className="form-group">
