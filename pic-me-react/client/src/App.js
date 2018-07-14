@@ -8,6 +8,7 @@ import Question from './pages/QuestionPage';
 import Wrapper from "./components/Wrapper";
 import Login from "./pages/LoginPage/Login";
 import NewUser from "./pages/NewUserPage/NewUser";
+import UserPage from "./pages/UserPage";
 
 class App extends Component {
   state = {
@@ -49,6 +50,7 @@ class App extends Component {
           <Route exact path="/login" render={() => <Login />} />
           <Route exact path="/question" render={() => <Question question={this.state.question}/>} />
           <Route exact path="/test" render={() => ( <div><Nav /><Test /></div>) } />
+          <Route exact path="/UserPage" render={() => ( <div><UserPage /></div>) } />
         </Wrapper>
       </div>
     </Router>
