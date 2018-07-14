@@ -13,18 +13,19 @@ import QuestionsData from "./utils/Questions.json";
 import GlobalPage from './pages/Global/Global';
 
 
+
 class App extends Component {
-  state = {
-    question: ""
-  };
+  // state = {
+  //   question: ""
+  // };
 
-  componentDidMount = () => {
-    // this.setState( { question: _.shuffle(QuestionsData)})
+  // componentDidMount = () => {
+  //   // this.setState( { question: _.shuffle(QuestionsData)})
 
-    const random = (arr) => Math.floor(Math.random() * arr.length)
-    this.setState( { question: QuestionsData[random(QuestionsData)].text }, () => console.log(this.state.question) )
+  //   const random = (arr) => Math.floor(Math.random() * arr.length)
+  //   this.setState( { question: QuestionsData[random(QuestionsData)].text }, () => console.log(this.state.question) )
 
-  };
+  // };
 
   // randomQuestion(array) {
   //   let j = Math.floor(Math.random() * array.length);
@@ -51,7 +52,7 @@ class App extends Component {
           <Title/>
           <Route exact path="/newuser" render={() => <NewUser />} />
           <Route exact path="/login" render={() => <Login />} />
-          <Route exact path="/question" render={() => <Question question={this.state.question}/>} />
+          <Route exact path="/question" render={() => <Question />} />
           <Route exact path="/test" render={() => ( <div><Nav /><Test /></div>) } />
           <Route exact path="/UserPage" render={() => ( <div><UserPage /></div>) } />
           <Route exact path="/Global" render={() => ( <div><GlobalPage /></div>) } />
