@@ -11,6 +11,7 @@ import NewUser from "./pages/NewUserPage/NewUser";
 import UserPage from "./pages/UserPage";
 import QuestionsData from "./utils/Questions.json";
 import GlobalPage from './pages/Global/Global';
+import Daily from './pages/Daily/Daily';
 
 
 
@@ -53,9 +54,11 @@ class App extends Component {
           <Route exact path="/newuser" render={() => <NewUser />} />
           <Route exact path="/login" render={() => <Login />} />
           <Route exact path="/question" render={() => <Question />} />
-          <Route exact path="/test" render={() => ( <div><Nav /><Test /></div>) } />
+          <Route exact path="/test" render={() => ( <div><Test /></div>) } />
           <Route exact path="/UserPage" render={() => ( <div><UserPage /></div>) } />
           <Route exact path="/Global" render={() => ( <div><GlobalPage /></div>) } />
+          <Route exact path="/daily" render={() => ( <div><Daily /></div>) } />
+
         </Wrapper>
       </div>
     </Router>

@@ -1,4 +1,21 @@
 import React from "react";
+// import API from "../utils/API";
+
+// class Daily extends Comment {
+//     state = {
+//         url: "",
+//     };
+
+//     componentDidMount() {
+//         API.getRandomGif()
+//             .then(res => this.setState({url: res.data.url}))
+//             .catch(err => console.log(err));
+//     }
+
+//     handleInputChange = event => {
+//         this.setState({})
+//     }
+// }
 
 const Daily = props => (
     <div className="container">
