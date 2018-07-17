@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Nav from "../../components/Nav";
 import questions from "../../utils/Questions.json";
 import moment from "moment";
+import axios from 'axios';
 
 class Question extends Component {
     state = {
@@ -11,15 +12,21 @@ class Question extends Component {
     };
     
     componentDidMount = () => {
+        axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+        console.log(localStorage.getItem('jwtToken'))
+        if (localStorage.getItem('jwtToken')===null) {
+            this.props.history.push("/login");
+        }
         this.intervalID = setInterval(
             () => this.tick(),
             1000
-          );
-        };
-        componentWillUnmount() {
+        );
+    };
+
+    componentWillUnmount() {
         clearInterval(this.intervalID);
     };
-  
+
     tick() {
         /* condition to check if current time is midnight.  iF so, run this.randomQuestion*/
         this.setState({
@@ -39,16 +46,23 @@ class Question extends Component {
         console.log(question);
         // this.setState({currentQ: question});
         if (this.state.currentQ === question) {
-          this.randomQuestion() 
+            this.randomQuestion() 
         } else {
-          this.setState({currentQ:question})
+            this.setState({currentQ:question})
         } 
+    }
+
+    logout = () => {
+        localStorage.removeItem('jwtToken');
+        window.location.reload();
+        console.log("Logout!")
     }
     
     render() {
         return (
             <div className="container">
-                <Nav />
+                <Nav 
+                    onClick={() => this.logout()} />
                 <h1 className="clock">{this.state.time}</h1>
                     <p>
                     {this.state.currentQ}

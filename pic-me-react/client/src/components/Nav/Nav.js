@@ -1,7 +1,7 @@
 import React from "react";
 import "./Nav.css";
 
-const Nav = () => (
+const Nav = (props) => (
     <nav className=" nav navbar navbar-dark">
         <div className="container">
             <div className="btn-group btn-group-lg" role="group" aria-label="User-Nav">
@@ -13,6 +13,9 @@ const Nav = () => (
                 </button> */}
                 <button type="button" className="btn btn-dark" aria-label="User">
                     <i className="fas fa-user-circle"></i>
+                </button>
+                <button type="button" className="btn btn-dark" aria-label="Logout" {...props}>
+                    <i className="fas fa-user-times"></i>
                 </button>
             </div>
         </div>
