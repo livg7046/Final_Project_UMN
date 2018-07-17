@@ -66,7 +66,7 @@ class Question extends Component {
             time: new Date().toLocaleString()
         });
         const currentDate = moment(new Date()).format("M/DD/YYYY");
-        if (this.state.time ==`${currentDate}, 12:54:30 PM`) {
+        if (this.state.time ===`${currentDate}, 12:54:30 PM`) {
             this.randomQuestion()
         }
     
