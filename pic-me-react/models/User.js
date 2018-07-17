@@ -13,6 +13,7 @@ const UsersSchema = new Schema({
         require: true,
         unique: true
     },
+
     email: {
         type: String, 
         require: true
@@ -20,6 +21,7 @@ const UsersSchema = new Schema({
         type: String, 
         require: true
     }
+
 });
 
 UserSchema.pre('save', function (next) {

@@ -26,7 +26,10 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
     "if-env": "^1.0.4",
+<<<<<<< HEAD
     "jquery": "^3.3.1",
+=======
+>>>>>>> 044182cac4c72bc87c59bb755c23c25af4f66ac3
     "moment": "^2.22.2",
     "mongoose": "^5.0.17",
     "morgan": "^1.9.0",
