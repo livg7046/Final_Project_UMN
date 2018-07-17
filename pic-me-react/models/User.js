@@ -14,7 +14,26 @@ const UserSchema = new Schema({
         type: String, 
         require: true
     }
+});
 
+UserSchema.pre('save', function (next) {
+    const User = this;
+    if (this.isModified('password') || this.isNew) {
+        bcrypt.genSalt(10, function (err, salt) {
+            if (err) {
+                return next(err);
+            }
+            bcrypt.hash(User.password, salt, null, function (err, hash) {
+                if (err) {
+                    return next(err);
+                }
+                User.password = hash;
+                next();
+            });
+        });
+    } else {
+        return next();
+    }
 });
 
 UserSchema.pre('save', function (next) {

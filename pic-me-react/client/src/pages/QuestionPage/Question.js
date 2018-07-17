@@ -10,6 +10,7 @@ class Question extends Component {
         questions,
         currentQ: questions[0].question,
         time: new Date().toLocaleString(),
+        currentDate: moment(new Date()).format("M/DD/YYYY"),
         search:"",
         photo: "https://vignette.wikia.nocookie.net/uncyclopedia/images/0/01/DramaticQuestionMark.png/revision/latest?cb=20060419021703",
         days: 0,
@@ -32,7 +33,6 @@ class Question extends Component {
         this.intervalID = setInterval(() => this.tick(), 1000);
         this.dateID = setInterval(() => this.dateTicker(moment().add(1,'days').startOf('day')), 1000)
     };
-
     componentWillUnmount() {
         clearInterval(this.intervalID);
         clearInterval(this.dateID)
@@ -79,11 +79,11 @@ class Question extends Component {
         this.setState({
             time: new Date().toLocaleString()
         });
-        const currentDate = moment(new Date()).format("M/DD/YYYY");
-        if (this.state.time ===`${currentDate}, 12:54:30 PM`) {
+        // const currentDate = moment(new Date()).format("M/DD/YYYY");
+        if (this.state.time ===`${this.state.currentDate}, 12:54:30 PM`) {
             this.randomQuestion()
         }
-    
+        
     };
 
     handleFormSubmit = event => {
@@ -130,17 +130,11 @@ class Question extends Component {
   
         return (
             <div className="container">
-                <Nav 
-                    onClick={() => this.logout()} />
-                <h1 className="clock">{this.state.time}</h1>
-                <h1 className="timer">
-                Hours
-                {this.state.hours}
-                Minutes
-                {this.state.min}
-                Seconds
-                {this.state.sec}
-                </h1>
+                <Nav onClick={() => this.logout()} />
+                {/* <h1 className="clock">{this.state.time}</h1> */}
+                <h2 className="clock">{this.state.currentDate}</h2>
+                <h3 className="timer">{this.state.hours} Hours {this.state.min} Minutes {this.state.sec} Seconds Remaining!
+                </h3>
                     <p>
                     {this.state.currentQ}
                     </p>
@@ -179,7 +173,7 @@ class Question extends Component {
                     </form>
                 <button id="getDaily">Get Daily</button> */}
                         <div className="Randomize">
-                <button class="btn btn-danger btn-lg" id="randomize-btn">Randomize</button>
+                <button class="btn btn-danger btn-lg" id="randomize-btn" onClick={this.handleFormSubmit}>Randomize</button>
             </div>
             <div className="Share">
                 <button class="btn btn-danger btn-lg" id="share-btn">Share</button>
