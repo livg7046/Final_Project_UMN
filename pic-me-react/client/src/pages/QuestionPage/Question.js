@@ -130,7 +130,7 @@ class Question extends Component {
   
         return (
             <div className="container">
-                <Nav />
+                <Nav onClick={() => this.logout()} />
                 {/* <h1 className="clock">{this.state.time}</h1> */}
                 <h2 className="clock">{this.state.currentDate}</h2>
                 <h3 className="timer">{this.state.hours} Hours {this.state.min} Minutes {this.state.sec} Seconds Remaining!
