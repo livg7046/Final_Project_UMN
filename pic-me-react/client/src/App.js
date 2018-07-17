@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { withRouter, BrowserRouter as Router, Route } from "react-router-dom";
 import './App.css';
 import Test from "./pages/Test";
 import Nav from "./components/Nav";
@@ -47,8 +47,9 @@ class App extends Component {
     //     <Test />
     //   </div>
     //   </Router >
-    <Router>
+    
       <div className="App">
+      <Router>
         <Wrapper>
           <Title/>
           <Route exact path="/newuser" render={() => <NewUser />} />
@@ -60,10 +61,11 @@ class App extends Component {
           <Route exact path="/daily" render={() => ( <div><Daily /></div>) } />
 
         </Wrapper>
+      </Router>
       </div>
-    </Router>
     );
   }
 }
 
+// export default withRouter(App);
 export default App;
