@@ -28,7 +28,7 @@ class Question extends Component {
             () => this.tick(),
             1000
         );
-    };
+        
         this.intervalID = setInterval(() => this.tick(), 1000);
         this.dateID = setInterval(() => this.dateTicker(moment().add(1,'days').startOf('day')), 1000)
     };
