@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, } from "react-router-dom";
 import './App.css';
 import Test from "./pages/Test";
 import Nav from "./components/Nav";
@@ -47,21 +47,21 @@ class App extends Component {
     //     <Test />
     //   </div>
     //   </Router >
-    <Router>
+    
       <div className="App">
+      <Router>
         <Wrapper>
           <Title/>
-          <Route exact path="/newuser" render={() => <NewUser />} />
-          <Route exact path="/login" render={() => <Login />} />
-          <Route exact path="/question" render={() => <Question />} />
-          <Route exact path="/test" render={() => ( <div><Test /></div>) } />
+          <Route exact path="/newuser" render={(props) => <NewUser history={props.history} />} />
+          <Route exact path="/login" render={(props) => <Login history={props.history} />} />
+          <Route exact path="/question" render={(props) => <Question history={props.history}/>} />
+          <Route exact path="/test" render={() => ( <div><Nav /><Test /></div>) } />
           <Route exact path="/UserPage" render={() => ( <div><UserPage /></div>) } />
           <Route exact path="/Global" render={() => ( <div><GlobalPage /></div>) } />
           <Route exact path="/daily" render={() => ( <div><Daily /></div>) } />
-
         </Wrapper>
+      </Router>
       </div>
-    </Router>
     );
   }
 }
