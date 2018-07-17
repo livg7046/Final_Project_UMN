@@ -32,10 +32,6 @@ class NewUser extends Component {
     
     handleFormSubmit = event => {
       event.preventDefault();
-
-      if(!userName && !password) {
-        return
-      }
       
       const { userName, password } = this.state;
       console.log(userName, password);

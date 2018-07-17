@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Nav from "../../components/Nav";
 import questions from "../../utils/Questions.json";
 import moment from "moment";
+import axios from 'axios';
 import API from "../../utils/API";
 
 class Question extends Component {
@@ -18,10 +19,20 @@ class Question extends Component {
     };
     
     componentDidMount = () => {
-        
+        axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+        console.log(localStorage.getItem('jwtToken'))
+        if (localStorage.getItem('jwtToken')===null) {
+            this.props.history.push("/login");
+        }
+        this.intervalID = setInterval(
+            () => this.tick(),
+            1000
+        );
+    };
         this.intervalID = setInterval(() => this.tick(), 1000);
         this.dateID = setInterval(() => this.dateTicker(moment().add(1,'days').startOf('day')), 1000)
     };
+
     componentWillUnmount() {
         clearInterval(this.intervalID);
         clearInterval(this.dateID)
@@ -108,12 +119,19 @@ class Question extends Component {
             this.setState({currentQ:question})
         } 
     }
+
+    logout = () => {
+        localStorage.removeItem('jwtToken');
+        window.location.reload();
+        console.log("Logout!")
+    }
     
     render() {
   
         return (
             <div className="container">
-                <Nav />
+                <Nav 
+                    onClick={() => this.logout()} />
                 <h1 className="clock">{this.state.time}</h1>
                 <h1 className="timer">
                 Hours

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-// import LoginForm from "../../components/LoginForm/LoginForm"
-import { Route , Router } from 'react-router-dom';
 import axios from 'axios';
-import Question from "../QuestionPage/Question";
+import { Link } from 'react-router-dom';
+import createHistory from "history/createBrowserHistory";
 
+// const history = createHistory();
   class Login extends Component {
 
     constructor(props) {
@@ -31,16 +31,17 @@ import Question from "../QuestionPage/Question";
         .then((result) => {
           console.log("_________________")
           console.log(result);
+          console.log(this.state)
+          console.log(this.props)
           localStorage.setItem('jwtToken', result.data.token);
-          // this.setState({ message: '' });
-          this.props.history.push('/question')
+          this.props.history.push('/question');
         })
-      // .catch((error) => {
-      //   // if(error.response.status === 401) {
-      //     this.setState({ message: 'Login failed. Username or password do not match' });
-      //     console.log(this.state.message);
-      //   // }
-      // });
+        .catch((error) => {
+          if(error.response.status === 401) {
+            this.setState({ message: 'Login failed. Username or password do not match' });
+            console.log(this.state.message);
+          }
+        });
 
     }
 
