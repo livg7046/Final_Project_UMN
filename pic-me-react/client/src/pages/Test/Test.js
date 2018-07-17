@@ -27,6 +27,8 @@ class Test extends React.Component {
 
     handleInputChange = event => {
 
+        event.preventDefault();
+        console.log(event);
         this.setState({search: event.target.value})
     };
 
@@ -51,15 +53,16 @@ class Test extends React.Component {
                             value={this.state.search}
                             onChange={this.handleInputChange}
                         />
-                    </label>  
-                </form>
-                <button 
+                    </label>
+                    <button 
                     id="getGif"
                     disabled={!(this.state.search)}
                     onClick={this.handleFormSubmit}
                     >
                     Submit
-                </button>
+                </button>  
+                </form>
+                
                 <div>
                     <img
                         alt="404 Please Search Again"
