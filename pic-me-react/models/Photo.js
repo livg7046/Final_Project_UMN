@@ -24,6 +24,10 @@ const PhotoSchema = new Schema({
     comment: {
         type: Schema.Types.ObjectId,
         ref: "Comment"
+    },
+    user: {
+        username: String, 
+        require: true
     }
 });
 
