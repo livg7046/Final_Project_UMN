@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
+import "./Login.css"
 import { Link } from 'react-router-dom';
 import createHistory from "history/createBrowserHistory";
 
@@ -57,10 +58,10 @@ import createHistory from "history/createBrowserHistory";
               <div className="form-group">
                   <input type="password" className="form-control" id="loginPasswordInput" placeholder="Enter Password" name="password" value={this.state.password} onChange={this.onInputChange("password")} required></input>
               </div>
-              <button className="btn btn-primary">Login</button>
+              <button className="btn" id="loginBtn">Login</button>
               <br></br>
               <br></br>
-              <h5>Don't have an account yet? <a href="/newuser">Create an account now!</a></h5>
+              <h5>Don't have an account yet? <a href="/newuser"id="link">Create an account now!</a></h5>
           </form>
         </div>
       )
