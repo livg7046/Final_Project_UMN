@@ -107,7 +107,7 @@ class Question extends Component {
         console.log(event);
         this.setState({search: event.target.value})
     };
-    
+
     randomQuestion() {
         let j = Math.floor(Math.random()*questions.length);
         console.log(j);
@@ -188,6 +188,7 @@ class Question extends Component {
                         </label>
                     </form>
                 <button id="getDaily">Get Daily</button> */}
+
                 <div className="Randomize">
                     <button class="btn btn-danger btn-lg" id="randomize-btn" onClick={this.handleFormSubmit}>Randomize</button>
                 </div>
@@ -198,8 +199,6 @@ class Question extends Component {
                     <button class="btn btn-danger btn-lg" id="noshare-btn">Don't Share</button>
                 </div>
             </div>
-
-        
         )};
 }
 
