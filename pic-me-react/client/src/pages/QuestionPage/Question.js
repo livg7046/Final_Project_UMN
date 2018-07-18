@@ -4,8 +4,6 @@ import questions from "../../utils/Questions.json";
 import moment from "moment";
 import axios from 'axios';
 import API from "../../utils/API";
-//import qnaController from "../../../../controllers/qnaController"
-
 
 class Question extends Component {
     state = {
@@ -22,7 +20,7 @@ class Question extends Component {
     };
     
     componentDidMount = () => {
-        axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+        // axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
         console.log(localStorage.getItem('jwtToken'))
         if (localStorage.getItem('jwtToken')===null) {
             this.props.history.push("/login");
@@ -55,7 +53,7 @@ class Question extends Component {
             hours: 0,
             min: 0,
             sec: 0
-          };
+        };
     
         if (diff >= 86400) { // 24 * 60 * 60
         timeLeft.days = Math.floor(diff / 86400);
@@ -75,7 +73,7 @@ class Question extends Component {
         // console.log(this.state)
     
     }
-  
+
     tick() {
         /* condition to check if current time is midnight.  iF so, run this.randomQuestion*/
         this.setState({
@@ -95,6 +93,7 @@ class Question extends Component {
         console.log("Searching...");
         
         API.getManyGif(this.state.search)
+            
             .then(res => {
                 console.log(res.data.data)
                 const randomGiphy = (arr) => Math.floor(Math.random() * arr.length)
@@ -109,17 +108,6 @@ class Question extends Component {
         this.setState({search: event.target.value})
     };
 
-    // handleShareButton = event => {
-    //     let photoObject = {
-    //         url: this.state.photo,
-    //         caption: this.state.search,
-    //         user: "",
-    //         date: this.state.currentDate
-    //     }
-    //     qnaController.submitAnswer(photoObject);
-    //     this.props.history.push('/userPage');
-    // };
-    
     randomQuestion() {
         let j = Math.floor(Math.random()*questions.length);
         console.log(j);
@@ -131,16 +119,31 @@ class Question extends Component {
         } else {
             this.setState({currentQ:question})
         } 
-    }
+    };
 
     logout = () => {
         localStorage.removeItem('jwtToken');
         window.location.reload();
         console.log("Logout!")
-    }
+    };
+
+    handleShareButton = event => {
+        let photoObject = {
+            url: this.state.photo,
+            caption: this.state.search,
+            user: "",
+            date: this.state.currentDate
+        }
+        console.log(photoObject);
+        axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+        axios.post('/api/photo', { photoObject })
+            .then(res => {
+            
+                console.log(res);
+            })
+    };
     
     render() {
-  
         return (
             <div className="container">
                 <Nav onClick={() => this.logout()} />
@@ -185,18 +188,17 @@ class Question extends Component {
                         </label>
                     </form>
                 <button id="getDaily">Get Daily</button> */}
-                        <div className="Randomize">
-                <button class="btn btn-danger btn-lg" id="randomize-btn" onClick={this.handleFormSubmit}>Randomize</button>
-            </div>
-            <div className="Share">
-                <button class="btn btn-danger btn-lg" id="share-btn" onClick={this.submitAnswer}>Share</button>
-            </div>
-            <div className="Noshare">
-            <button class="btn btn-danger btn-lg" id="noshare-btn">Don't Share</button>
-            </div>
-            </div>
 
-        
+                <div className="Randomize">
+                    <button class="btn btn-danger btn-lg" id="randomize-btn" onClick={this.handleFormSubmit}>Randomize</button>
+                </div>
+                <div className="Share">
+                    <button class="btn btn-danger btn-lg" id="share-btn" onClick={this.handleShareButton}>Share</button>
+                </div>
+                <div className="Noshare">
+                    <button class="btn btn-danger btn-lg" id="noshare-btn">Don't Share</button>
+                </div>
+            </div>
         )};
 }
 

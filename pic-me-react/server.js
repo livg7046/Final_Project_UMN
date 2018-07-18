@@ -36,6 +36,7 @@ mongoose.connect("mongodb://localhost/PicMedb", { promiseLibrary: require('blueb
 app.use('/api/photo', photo);
 app.use('/api/auth', auth);
 
+
 // Route to post our form submission to mongoDB via mongoose
 // app.post("/submit", function(req, res) {
 //   // Create a new user using req.body

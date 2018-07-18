@@ -11,25 +11,18 @@ const PhotoSchema = new Schema({
         type: String,
         require: true
     },
-    likeCount: {
-        type: Number,
-        require: true
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
     },
     likes: {
-        type: Array
+        type: Number
     },
-    reactions: {
-        type: Array
+    date: {
+        type: Date,
+        default: Date.now()
+
     },
-    comment: {
-        type: Schema.Types.ObjectId,
-        ref: "Comment"
-    },
-    user: {
-        username: String, 
-        require: true
-    },
-    
 });
 
 const Photo = mongoose.model("Photo", PhotoSchema);
