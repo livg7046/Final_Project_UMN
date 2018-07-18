@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
 const Photo = require('../models/Photo.js');
 const passport = require('passport');
 require('../config/passport')(passport);
@@ -18,11 +17,13 @@ router.get('/', passport.authenticate('jwt', { session: false }), function (req,
     }
 });
 
-// Save photo
+// Save Image
 router.post('/', passport.authenticate('jwt', { session: false }), function (req, res) {
     var token = getToken(req.headers);
     if (token) {
         Photo.create(req.body, function (err, post) {
+            console.log("==== Save Image ====")
+            console.log(req.body);
             if (err) return next(err);
             res.json(post);
         });
