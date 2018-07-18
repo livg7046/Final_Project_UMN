@@ -4,7 +4,6 @@ h1 {
 
 .btn-group {
     width: 100%;
-    border: yellow;
     border-width:  5px;
 }
 
@@ -14,7 +13,7 @@ h1 {
 
 .btn-dark {
     color: #fff;
-    background-color: rgb(13, 26, 202);
+    background-color:royalblue;
     border-color: black;
-    border-width: 2px;
+    border-width: 1px;
 }

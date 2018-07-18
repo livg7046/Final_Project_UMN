@@ -1,5 +1,25 @@
-h1 {
-    color: orange;
-    font-family: 'Monoton', cursive;
+#title {
+    /* color: orange;*/
+    font-family: 'Monoton';
+    font-weight: 500;
     /* background-color: blue; */
+    /* text-shadow: 1px 1px royalblue; */ 
+    /*/
 }
+
+.Nav
+    {
+        -webkit-animation: mymove 5s infinite; /* Chrome, Safari, Opera */
+        animation: mymove 6s infinite;
+    }
+    
+    /* Chrome, Safari, Opera */
+    @-webkit-keyframes mymove {
+        50% {text-shadow: 5px 5px 5px royalblue;}
+    }
+    
+    /* Standard syntax */
+    @keyframes mymove {
+        50% {text-shadow: 2px 2px 4px royalblue;}
+    }
+

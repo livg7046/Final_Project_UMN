@@ -25,10 +25,11 @@ const PhotoSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Comment"
     },
-    // user: {
-    //     username: String, 
-    //     require: true
-    // }
+    user: {
+        username: String, 
+        require: true
+    },
+    
 });
 
 const Photo = mongoose.model("Photo", PhotoSchema);

@@ -4,6 +4,8 @@ import questions from "../../utils/Questions.json";
 import moment from "moment";
 import axios from 'axios';
 import API from "../../utils/API";
+//import qnaController from "../../../../controllers/qnaController"
+
 
 class Question extends Component {
     state = {
@@ -106,6 +108,17 @@ class Question extends Component {
         console.log(event);
         this.setState({search: event.target.value})
     };
+
+    // handleShareButton = event => {
+    //     let photoObject = {
+    //         url: this.state.photo,
+    //         caption: this.state.search,
+    //         user: "",
+    //         date: this.state.currentDate
+    //     }
+    //     qnaController.submitAnswer(photoObject);
+    //     this.props.history.push('/userPage');
+    // };
     
     randomQuestion() {
         let j = Math.floor(Math.random()*questions.length);
@@ -176,7 +189,7 @@ class Question extends Component {
                 <button class="btn btn-danger btn-lg" id="randomize-btn" onClick={this.handleFormSubmit}>Randomize</button>
             </div>
             <div className="Share">
-                <button class="btn btn-danger btn-lg" id="share-btn">Share</button>
+                <button class="btn btn-danger btn-lg" id="share-btn" onClick={this.submitAnswer}>Share</button>
             </div>
             <div className="Noshare">
             <button class="btn btn-danger btn-lg" id="noshare-btn">Don't Share</button>
