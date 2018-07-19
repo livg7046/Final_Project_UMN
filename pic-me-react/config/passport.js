@@ -1,15 +1,21 @@
-var JwtStrategy = require('passport-jwt').Strategy,
-    ExtractJwt = require('passport-jwt').ExtractJwt;
+const passportJWT = require("passport-jwt");
+const JwtStrategy = require('passport-jwt').Strategy,
+ExtractJwt = require('passport-jwt').ExtractJwt;
 
 // load up the user model
-var User = require('../models/User');
-var settings = require('../config/settings'); // get settings file
+const User = require('../models/User');
+const settings = require('../config/settings'); // get settings file
 
 module.exports = function(passport) {
-    var opts = {};
+
+    const opts = {};
+
     opts.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme("jwt");
+
     opts.secretOrKey = settings.secret;
+
     passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
+
         User.findOne({id: jwt_payload.id}, function(err, user) {
             if (err) {
                 return done(err, false);
@@ -19,6 +25,7 @@ module.exports = function(passport) {
             } else {
                 done(null, false);
             }
+
         });
     }));
 };

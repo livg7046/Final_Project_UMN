@@ -30,12 +30,17 @@ import createHistory from "history/createBrowserHistory";
 
       axios.post('/api/auth/login', { userName, password })
         .then((result) => {
-          console.log("_________________")
+          
           this.setState({ message: 'Login success!'});
+
           console.log(result);
           console.log(this.state);
           console.log(this.props);
+
           localStorage.setItem('jwtToken', result.data.token);
+          localStorage.setItem('userId', result.data.userId);
+          localStorage.setItem('userName', result.data.userName);
+          
           this.props.history.push('/question');
         })
         .catch((error) => {
