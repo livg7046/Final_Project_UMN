@@ -35,6 +35,7 @@ class App extends Component {
   //   return question;
   // }
   render() {
+    console.log(this.props, ' are props')
     // var question = (this.randomQuestion(this.state.questions)).question;
     return (
     //   <Router>
@@ -57,7 +58,7 @@ class App extends Component {
           <Route exact path="/question" render={(props) => <Question history={props.history}/>} />
           <Route exact path="/test" render={() => ( <div><Nav /><Test /></div>) } />
           <Route exact path="/UserPage" render={() => ( <div><UserPage /></div>) } />
-          <Route exact path="/Global" render={() => ( <div><GlobalPage /></div>) } />
+          <Route exact path="/Global" render={() => ( <div><GlobalPage history={this.props.history}/></div>) } />
           <Route exact path="/daily" render={() => ( <div><Daily /></div>) } />
         </Wrapper>
       </Router>

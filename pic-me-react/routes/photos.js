@@ -18,9 +18,10 @@ router.get('/', passport.authenticate('jwt', { session: false }), function (req,
 });
 
 // Save Image
-router.post('/', passport.authenticate('jwt', { session: false }), function (req, res) {
+router.post('/', passport.authenticate('jwt', { session: false }), function (req, res, next) {
     var token = getToken(req.headers);
     if (token) {
+        console.log(req.body)
         Photo.create(req.body, function (err, post) {
             console.log("==== Save Image ====")
             console.log(req.body);
