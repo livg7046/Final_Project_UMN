@@ -43,7 +43,7 @@ const CommentForm = () => (
     //     </div>
     // </div>
 
-    <div classNameName="detailBox">
+    <div className="detailBox">
                             {/* <div class="emoji-btn">
                             <button class="btn emoji" type="button"><i class="far fa-smile fa-2x"></i></button>
                             <button class="btn emoji" type="button"><i class="far fa-meh fa-2x"></i></button>
