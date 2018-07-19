@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import NewUserForm from "../../components/NewUserForm/NewUserForm"
 import axios from 'axios';
-import { Link } from "react-router-dom";
 import Uploader from "../../components/Uploader/Uploader";
 import "./NewUserPage.css"
 
