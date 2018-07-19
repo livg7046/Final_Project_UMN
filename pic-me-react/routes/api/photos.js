@@ -3,7 +3,8 @@ const photosController = require("../../controllers/photosController");
 
 // Matches with "/api/photos"
 router.route("/")
-    .get(photosController.findAll);
+    .get(photosController.findAll)
+    .post(photosController.create);
     
 // Matches with "/api/photoes/:id"
 router.route("/:id")
