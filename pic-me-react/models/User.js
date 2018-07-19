@@ -12,6 +12,12 @@ const UserSchema = new Schema({
     password: {
         type: String, 
         require: true
+    },
+
+    url: {
+        type: String,
+        require: false,
+        unique: false
     }
 });
 
