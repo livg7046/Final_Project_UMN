@@ -132,15 +132,36 @@ class Question extends Component {
             url: this.state.photo,
             caption: this.state.search,
             user: "",
+            likes:"",
             date: this.state.currentDate
         }
         console.log(photoObject);
+
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+**** olivias_branch
         axios.post('/api/photo', photoObject)
             .then(res => {
             
                 console.log(res);
             })
+**** -----
+        // axios.post('/api/photo', { 
+        //     url: this.state.photo,
+        //     caption: this.state.search,
+        //     user: "",
+        //     likes:"",
+        //     date: this.state.currentDate 
+        // })
+        // .then(res => {
+        
+        //     console.log(res);
+        // })
+        API.saveUserImage({
+            photoObject
+        })
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+*****-- master
     };
     
     render() {
