@@ -79,8 +79,8 @@ class Question extends Component {
         this.setState({
             time: new Date().toLocaleString()
         });
-        // const currentDate = moment(new Date()).format("M/DD/YYYY");
-        if (this.state.time ===`${this.state.currentDate}, 12:54:30 PM`) {
+        const currentDate = moment(new Date()).format("M/DD/YYYY");
+        if (this.state.time ===`${this.state.currentDate}, 9:06:00 PM`) {
             this.randomQuestion()
         }
         
@@ -138,6 +138,13 @@ class Question extends Component {
         console.log(photoObject);
 
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+**** olivias_branch
+        axios.post('/api/photo', photoObject)
+            .then(res => {
+            
+                console.log(res);
+            })
+**** -----
         // axios.post('/api/photo', { 
         //     url: this.state.photo,
         //     caption: this.state.search,
@@ -154,6 +161,7 @@ class Question extends Component {
         })
         .then(res => console.log(res))
         .catch(err => console.log(err));
+*****-- master
     };
     
     render() {
@@ -181,7 +189,7 @@ class Question extends Component {
                             id="getGif"
                             disabled={!(this.state.search)}
                             onClick={this.handleFormSubmit}>
-                            Submit
+                            Search
                         </button>  
                     </form>
                 </div>
@@ -206,10 +214,10 @@ class Question extends Component {
                     <button class="btn btn-danger btn-lg" id="randomize-btn" onClick={this.handleFormSubmit}>Randomize</button>
                 </div>
                 <div className="Share">
-                    <button class="btn btn-danger btn-lg" id="share-btn" onClick={this.handleShareButton}>Share</button>
+                    <button class="btn btn-danger btn-lg" id="share-btn" onClick={this.handleShareButton}>Share </button>
                 </div>
                 <div className="Noshare">
-                    <button class="btn btn-danger btn-lg" id="noshare-btn">Don't Share</button>
+                    <button class="btn btn-danger btn-lg" id="noshare-btn">Not Today</button>
                 </div>
             </div>
         )};

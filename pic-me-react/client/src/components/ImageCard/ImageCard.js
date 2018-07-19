@@ -3,13 +3,14 @@ import "./ImageCard.css";
 // import Btn from "../Btn";
 
 const ImageCard = props => (
-    // <div
-    //     className = "imageCard"
-    //     style = {{
-    //         backgroundImage: props.image ? `url(${props.image})` : "none"
-    //     }}
-    // >
-    // </div>
+
+    // handleLikeClick() {
+        
+    //     this.setState({
+    //         likes:this.state.likes + 1
+    //     });
+    // };
+
     <div className="container">
         <div className="imageCard">
             <img 
@@ -17,7 +18,7 @@ const ImageCard = props => (
                 alt = "gif"
                 
             />
-            <button className="btn emoji" type="button"><i className="far fa-thumbs-up fa-2x"></i></button>
+            <button className="btn emoji" type="button" onClick={this.handleLikeClick}><i className="far fa-thumbs-up fa-2x"></i></button>
         </div>
     </div>
 );
