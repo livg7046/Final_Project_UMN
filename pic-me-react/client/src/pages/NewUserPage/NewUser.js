@@ -60,7 +60,7 @@ class NewUser extends Component {
                   <input name="password1" value={this.state.password} onChange={this.handleInputChange("password")} type="text" className="form-control" id="loginPassword1Create" placeholder="" required></input>
               </div>
 
-              <div><img id="image-preview" src={this.state.url}></img></div>
+              <div><img id="image-preview" src={this.state.url} alt="alt"></img></div>
               <Uploader id="uploader" onChange={this.handleFileUpload}  name="my_file" data-images-only data-tabs="file camera url" data-crop="1:1"/>
 
               <br></br>

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import uploadcare from "uploadcare-widget";
-import { log } from "util";
+// import { log } from "util";
 
 class Uploader extends Component {
 

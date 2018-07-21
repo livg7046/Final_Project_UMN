@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import "./Login.css"
-import { Link } from 'react-router-dom';
-import createHistory from "history/createBrowserHistory";
-
+// import { Link } from 'react-router-dom';
+// import createHistory from "history/createBrowserHistory";
 // const history = createHistory();
+
   class Login extends Component {
 
     constructor(props) {

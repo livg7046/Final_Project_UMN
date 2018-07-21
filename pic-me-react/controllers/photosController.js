@@ -34,6 +34,13 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
 
+  findByUserId: () => {
+    db.Photo
+      .findById({_id: req.params.id }, {userId: red.params.userId})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  }
+
   // createComment: function(req, res) {
   //   newComment = {
   //       userId: req.body.id,

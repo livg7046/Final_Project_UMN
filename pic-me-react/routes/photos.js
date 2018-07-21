@@ -34,6 +34,17 @@ router.post('/', passport.authenticate('jwt', { session: false }), function (req
     }
 });
 
+// Get User Images
+router.get('/:userId', passport.authenticate('jwt', { session: false }), function (req, res, next) {
+    console.log("user")
+    Photo.find({userId: req.params.userId }, function(err, photos) {
+        console.log("=== Get User Images ===")
+        console.log(photos);
+        if (err) return next(err);
+        res.json(photos);
+    })
+})
+
 getToken = function (headers) {
     if (headers && headers.authorization) {
         var parted = headers.authorization.split(' ');
