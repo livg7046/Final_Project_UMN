@@ -4,7 +4,7 @@ h1 {
 
 .btn-group {
     width: 100%;
-    border-width:  5px;
+    border-width: 5px;
 }
 
 .btn-nav {
@@ -13,6 +13,10 @@ h1 {
     border-color: cornflowerblue;
     border-width: 1px;
 }
+
+/*.btn-nav:hover {
+   background-color: cornflowerblue;
+}*/
 
 .fas {
 	color: lightsalmon;
