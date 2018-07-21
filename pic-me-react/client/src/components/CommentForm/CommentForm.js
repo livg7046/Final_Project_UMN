@@ -43,6 +43,7 @@ const CommentForm = () => (
     //     </div>
     // </div>
 
+    <div className="container">
     <div className="detailBox">
                             {/* <div class="emoji-btn">
                             <button class="btn emoji" type="button"><i class="far fa-smile fa-2x"></i></button>
@@ -65,7 +66,7 @@ const CommentForm = () => (
                     <input className="form-control" type="text" placeholder="Your comments" />
                 </div>
                 <div className="form-group">
-                    <button className="btn btn-default">Add</button>
+                    <button className="btn comment-btn">Add</button>
                 </div>
             </form>
             <ul className="commentList">
@@ -96,6 +97,7 @@ const CommentForm = () => (
             </ul>
 
         </div>
+    </div>
     </div>
 );
 

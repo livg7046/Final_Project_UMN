@@ -13,15 +13,20 @@ import UserPage from "./pages/UserPage";
 import GlobalPage from './pages/Global/Global';
 import Daily from './pages/Daily/Daily';
 
-
-
 class App extends Component {
+  state = {
+    user: {
+      image: "https://ucarecdn.com/eda32654-f96e-4081-86b6-11cf46d8d05f/-/crop/1735x1738/1,0/-/preview/"
+    }
+  }
   render() {
+    console.log(this.props, ' are props')
     return (
       <div className="App">
       <Router>
         <Wrapper>
-          <Title/>
+          <Title 
+            src={this.state.user.image}/>
           <Route exact path="/" render={(props) => <Login history={props.history} />} />
           <Route exact path="/newuser" render={(props) => <NewUser history={props.history} />} />
           <Route exact path="/login" render={(props) => <Login history={props.history} />} />

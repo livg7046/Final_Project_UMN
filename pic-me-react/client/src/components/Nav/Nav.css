@@ -1,5 +1,5 @@
 h1 {
-    color: orange;
+    color: coral;
 }
 
 .btn-group {
@@ -7,13 +7,18 @@ h1 {
     border-width:  5px;
 }
 
-.btn {
+.btn-nav {
     width: 50%;
+	background-color: royalblue;
+    border-color: cornflowerblue;
+    border-width: 1px;
 }
 
-.btn-dark {
-    color: #fff;
-    background-color:royalblue;
-    border-color: black;
-    border-width: 1px;
+.fas {
+	color: lightsalmon;
+}
+
+.navbar {
+    padding: 0;
+    padding-bottom: 5px;
 }
