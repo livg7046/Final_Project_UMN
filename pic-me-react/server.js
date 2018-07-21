@@ -1,4 +1,9 @@
 const express = require("express");
+
+const passport = require("passport");
+
+require("./config/passport");
+
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
@@ -33,7 +38,7 @@ mongoose.connect("mongodb://localhost/PicMedb", { promiseLibrary: require('blueb
 // Routes
 // const routes = require("./routes");
 // app.use(routes);
-app.use('/api/photo', photo);
+app.use('/api/photo', passport.authenticate('jwt', {session: false}), photo);
 app.use('/api/auth', auth);
 
 

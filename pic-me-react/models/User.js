@@ -18,7 +18,7 @@ const UserSchema = new Schema({
         type: String,
         require: false,
         unique: false
-    }
+    },
 });
 
 UserSchema.pre('save', function (next) {

@@ -12,8 +12,7 @@ const PhotoSchema = new Schema({
         require: true
     },
     user: {
-        type: Schema.Types.ObjectId,
-        ref: "User"
+        type: String
     },
     likes: {
         type: Number
@@ -21,8 +20,11 @@ const PhotoSchema = new Schema({
     date: {
         type: Date,
         default: Date.now()
-
     },
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    }
 });
 
 const Photo = mongoose.model("Photo", PhotoSchema);

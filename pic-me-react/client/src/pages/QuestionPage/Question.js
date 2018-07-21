@@ -16,15 +16,23 @@ class Question extends Component {
         days: 0,
         hours: 0,
         min: 0,
-        sec: 0
+        sec: 0,
+        user: '',
+        userId: ''
     };
     
     componentDidMount = () => {
         // axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
         console.log(localStorage.getItem('jwtToken'))
+        console.log(localStorage.getItem('userName'))
+        console.log(localStorage.getItem('userId'))
+        this.setState({user: localStorage.getItem('userName')})
+        this.setState({userId: localStorage.getItem('userId')})
+
         if (localStorage.getItem('jwtToken')===null) {
             this.props.history.push("/login");
         }
+
         this.intervalID = setInterval(
             () => this.tick(),
             1000
@@ -80,7 +88,7 @@ class Question extends Component {
             time: new Date().toLocaleString()
         });
         const currentDate = moment(new Date()).format("M/DD/YYYY");
-        if (this.state.time ===`${this.state.currentDate}, 9:06:00 PM`) {
+        if (this.state.time ===`${this.state.currentDate}, 9:13:00 PM`) {
             this.randomQuestion()
         }
         
@@ -131,37 +139,26 @@ class Question extends Component {
         let photoObject = {
             url: this.state.photo,
             caption: this.state.search,
-            user: "",
-            likes:"",
+            user: this.state.user,
+            userId: this.state.userId,
+            likes: 0,
             date: this.state.currentDate
-        }
+        };
+
         console.log(photoObject);
 
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
-**** olivias_branch
         axios.post('/api/photo', photoObject)
             .then(res => {
             
                 console.log(res);
             })
-**** -----
-        // axios.post('/api/photo', { 
-        //     url: this.state.photo,
-        //     caption: this.state.search,
-        //     user: "",
-        //     likes:"",
-        //     date: this.state.currentDate 
-        // })
-        // .then(res => {
         
-        //     console.log(res);
+        // API.saveUserImage({
+        //     photoObject
         // })
-        API.saveUserImage({
-            photoObject
-        })
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
-*****-- master
+        // .then(res => console.log(res))
+        // .catch(err => console.log(err));
     };
     
     render() {
@@ -199,9 +196,6 @@ class Question extends Component {
                         alt="404 Please Search Again"
                         src={this.state.photo}
                     />
-                    {/* <ImageCard
-                        src = {this.state.photo}
-                    /> */}
                 </div>
                     {/* <form>
                         <label> Answer:

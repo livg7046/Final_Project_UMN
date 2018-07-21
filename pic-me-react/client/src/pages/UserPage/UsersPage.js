@@ -2,6 +2,7 @@ import React from "react";
 import Nav from "../../components/Nav";
 import ImageCard from "../../components/ImageCard/ImageCard";
 import CommentForm from "../../components/CommentForm";
+import './UsersPage.css';
 
 
 const UserPage = props => {
