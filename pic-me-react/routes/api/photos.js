@@ -9,6 +9,7 @@ router.route("/")
 // Matches with "/api/photoes/:id"
 router.route("/:id")
     .get(photosController.findById)
+    .get(photosController.findByUserId)
     .put(photosController.update)
     .delete(photosController.remove);
 

@@ -87,7 +87,7 @@ class Question extends Component {
         this.setState({
             time: new Date().toLocaleString()
         });
-        const currentDate = moment(new Date()).format("M/DD/YYYY");
+        // const currentDate = moment(new Date()).format("M/DD/YYYY");
         if (this.state.time ===`${this.state.currentDate}, 9:13:00 PM`) {
             this.randomQuestion()
         }
@@ -153,6 +153,8 @@ class Question extends Component {
             
                 console.log(res);
             })
+
+        this.props.history.push("/global");
         
         // API.saveUserImage({
         //     photoObject
