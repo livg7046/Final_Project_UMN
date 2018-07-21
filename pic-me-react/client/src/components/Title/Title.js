@@ -4,9 +4,11 @@ import "./Title.css";
 const Title = (props) => (
     <nav className="navbar" className="Nav">
         <div className="container row">
-            <h1 id="title" className="text-left col-8">PicMe</h1>
+            <div className="text-left col-8">
+                <h1 id="title" >PicMe</h1>
+            </div>
             <div className="text-right col-4">
-                <button className="btn btn-lg btn-link" >
+                <button className="text-right btn btn-lg btn-link" >
                     <img className="rounded-circle" id="profile-pic-icon" src={props.src}></img>
                 </button>
             </div>
