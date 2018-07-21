@@ -16,6 +16,11 @@ import Daily from './pages/Daily/Daily';
 
 
 class App extends Component {
+  state = {
+    user: {
+      image: "https://ucarecdn.com/eda32654-f96e-4081-86b6-11cf46d8d05f/-/crop/1735x1738/1,0/-/preview/"
+    }
+  }
   // state = {
   //   question: ""
   // };
@@ -36,23 +41,13 @@ class App extends Component {
   // }
   render() {
     console.log(this.props, ' are props')
-    // var question = (this.randomQuestion(this.state.questions)).question;
     return (
-    //   <Router>
-    //     <div className="App">
-    //       <Nav />
-    //       <Wrapper />
-    //       {/* <Question question={this.state.question}/> */}
-    //       <Route exact path="/question" component={Question} />
-    //     </Wrapper>
-    //     <Test />
-    //   </div>
-    //   </Router >
     
       <div className="App">
       <Router>
         <Wrapper>
-          <Title/>
+          <Title 
+            src={this.state.user.image}/>
           <Route exact path="/newuser" render={(props) => <NewUser history={props.history} />} />
           <Route exact path="/login" render={(props) => <Login history={props.history} />} />
           <Route exact path="/question" render={(props) => <Question history={props.history}/>} />

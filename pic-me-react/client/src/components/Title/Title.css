@@ -5,9 +5,15 @@
     /* color: orange;*/
     /*font-family: 'Monoton';*/
     font-weight: 500;
+
+    margin-bottom: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
     font-size: 60px;
     /*font-family: 'Merienda', cursive;*/
     font-family: 'Gaegu', cursive;
+
     /* background-color: blue; */
     /* text-shadow: 1px 1px royalblue; */ 
     /*/
@@ -28,4 +34,21 @@
     @keyframes mymove {
         50% {text-shadow: 2px 2px 4px royalblue;}
     }
+
+#profile-pic-icon {
+    width: 50px;
+}
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.btn-lg {
+    height: 100%;
+    width: 60px;;
+    padding: 5%;
+}
 
