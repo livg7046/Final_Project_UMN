@@ -14,12 +14,12 @@ const ImageCard = props => (
     <div className="container">
         <div className="imageCard">
             <img 
-                src = {props.photo ? props.photo : "https://4.bp.blogspot.com/-NRb_00TX9rc/VVZcMiW28tI/AAAAAAAAAQ4/mr2EgcSmCWs/s1600/50+THINGS+TO+DO+TOGETHER.png"}
+                src = {props.photo ? props.photo : "https://instantedgemarketing.com/wp-content/uploads/2016/10/bigstock-Question-Mark-Asking-Confusion-108659435.jpg"}
                 alt = "gif"
                 
             />
             <div className="like-btn">
-            <button className="btn like" type="button" onClick={this.handleLikeClick}><i className="fas fa-heart fa-3x"></i></button>
+            <button className="btn like" type="button" onClick={this.handleLikeClick}><i className="far fa-heart fa-3x"></i></button>
         {/*<button className="btn thumbsup" type="button"><i className="fas fa-thumbs-up fa-2x"></i></button>*/}
             </div>
         </div>
