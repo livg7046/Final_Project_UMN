@@ -67,7 +67,7 @@ class NewUser extends Component {
               <br></br>
 
 
-              <button onClick={this.handleFormSubmit} className="btn btn-primary">Submit</button>
+              <button onClick={this.handleFormSubmit} className="btn btn-danger" id="submit-btn">Submit</button>
           </form>
           </div>
         </div>

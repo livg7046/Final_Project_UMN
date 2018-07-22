@@ -98,5 +98,3 @@ class Daily extends Component {
 };
 
 export default Daily;
-
-
