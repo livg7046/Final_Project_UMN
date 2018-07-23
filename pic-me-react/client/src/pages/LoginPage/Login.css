@@ -1,9 +1,20 @@
 #loginBtn {
+    background-color: rgba(255, 166, 0, 0.85);
+    color: white;
+    font-style: bold;
+    /* border-color: black; */
+}
+
+/* #loginBtn:hover {
+    background-color: orange;
+    color: white;
+    font-style: bold;
+    border-color: black;
     /*background-color: transparent;
     color: coral;*/
-    background-color: lightsalmon;
+    /*background-color: lightsalmon;
     border-color: transparent;
-}
+} */
 
 #loginBtn:hover {
 	background-color: coral;

@@ -64,10 +64,10 @@ import "./Login.css"
               <div className="form-group">
                   <input type="password" className="form-control" id="loginPasswordInput" placeholder="Enter Password" name="password" value={this.state.password} onChange={this.onInputChange("password")} required></input>
               </div>
-              <button className="btn btn-danger" id="loginBtn">Login</button>
+              <button type="button" className="btn" id="loginBtn">Login</button>
               <br></br>
               <br></br>
-              <h5>Don't have an account yet? <a href="/newuser"id="link">Create an account now!</a></h5>
+              <h6>Don't have an account yet? <a href="/newuser"id="link">Create an account now!</a></h6>
           </form>
         </div>
       )

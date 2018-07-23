@@ -3,7 +3,7 @@ import React from "react";
 const NewUserForm = () => (
     <div className="container">
     <br></br>
-    <h3>Create a New Account</h3>
+    <h4>Create a New Account</h4>
     <br></br>
     <form>
         <div className="form-group">
