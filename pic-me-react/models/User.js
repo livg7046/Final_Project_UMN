@@ -14,7 +14,7 @@ const UserSchema = new Schema({
         require: true
     },
 
-    url: {
+    profileUrl: {
         type: String,
         require: false,
         unique: false

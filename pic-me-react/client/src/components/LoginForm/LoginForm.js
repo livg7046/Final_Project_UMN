@@ -14,11 +14,11 @@ const Login = () => (
             {/* <label for="loginPasswordInput"><h5>Password</h5></label> */}
             <input type="text" className="form-control" id="loginPasswordInput" placeholder="Enter Password"></input>
         </div>
-        <button className="btn btn-primary">Login</button>
+        <button className="btn btn-danger">Login</button>
         <br></br>
         <br></br>
         <h5>Don't have an account yet? <a href="/newuser">Create an account now!</a></h5>
-        {/* <button className="btn btn-primary">Create New Account</button> */}
+        {/* <button className="btn btn-danger">Create New Account</button> */}
 
     </form>
     </div>

@@ -14,11 +14,14 @@ const ImageCard = props => (
     <div className="container">
         <div className="imageCard">
             <img 
-                src = {props.photo ? props.photo : "https://vignette.wikia.nocookie.net/uncyclopedia/images/0/01/DramaticQuestionMark.png/revision/latest?cb=20060419021703"}
+                src = {props.photo ? props.photo : "https://instantedgemarketing.com/wp-content/uploads/2016/10/bigstock-Question-Mark-Asking-Confusion-108659435.jpg"}
                 alt = "gif"
                 
             />
-            <button className="btn emoji" type="button" onClick={this.handleLikeClick}><i className="far fa-thumbs-up fa-2x"></i></button>
+            <div className="like-btn">
+            <button className="btn like" type="button" onClick={this.handleLikeClick}><i className="far fa-heart fa-3x"></i></button>
+        {/*<button className="btn thumbsup" type="button"><i className="fas fa-thumbs-up fa-2x"></i></button>*/}
+            </div>
         </div>
     </div>
 );

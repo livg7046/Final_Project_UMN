@@ -5,13 +5,25 @@
     /* border-color: black; */
 }
 
-#loginBtn:hover {
+/* #loginBtn:hover {
     background-color: orange;
     color: white;
     font-style: bold;
     border-color: black;
+    /*background-color: transparent;
+    color: coral;*/
+    /*background-color: lightsalmon;
+    border-color: transparent;
+} */
+
+#loginBtn:hover {
+	background-color: coral;
 }
 
 #link {
-    color: orange;
+    color: coral;
+}
+
+#link:hover {
+	color: lightsalmon;
 }
