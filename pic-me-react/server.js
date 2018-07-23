@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/PicMedb", { promiseLibrary: require('bluebird') })
+mongoose.connect("mongodb://localhost:27017/PicMedb", { promiseLibrary: require('bluebird'), useNewUrlParser: true })
   .then(() =>  console.log('Connected to MongoDB'))
   .catch((err) => console.error(err));
 
