@@ -9,7 +9,7 @@ class NewUser extends Component {
       this.state = {
         userName: '',
         password: '',
-        url: 'https://vignette.wikia.nocookie.net/the-darkest-minds/images/4/47/Placeholder.png/revision/latest/scale-to-width-down/480?cb=20160927044640'
+        profileUrl: 'https://vignette.wikia.nocookie.net/the-darkest-minds/images/4/47/Placeholder.png/revision/latest/scale-to-width-down/480?cb=20160927044640'
       };
     };
 
@@ -19,23 +19,23 @@ class NewUser extends Component {
       });
     };
 
-    handleFileUpload = url => {
+    handleFileUpload = profileUrl => {
       console.log("String");
-      this.setState({url})
-      console.log(url)
+      this.setState({profileUrl})
+      console.log(profileUrl)
     }
     
     handleFormSubmit = event => {
       event.preventDefault();
       
-      const { userName, password, url } = this.state;
-      console.log(userName, password, url);
+      const { userName, password, profileUrl } = this.state;
+      console.log(userName, password, profileUrl);
 
-      axios.post('/api/auth/register', { userName, password, url })
+      axios.post('/api/auth/register', { userName, password, profileUrl })
         .then((result) => {
           console.log(userName);
           console.log(password);
-          console.log(url)
+          console.log(profileUrl)
           console.log(result);
           this.props.history.push("/login");
         })
@@ -60,7 +60,7 @@ class NewUser extends Component {
                   <input name="password1" value={this.state.password} onChange={this.handleInputChange("password")} type="text" className="form-control" id="loginPassword1Create" placeholder="" required></input>
               </div>
 
-              <div><img id="image-preview" src={this.state.url} alt="alt"></img></div>
+              <div><img id="image-preview" src={this.state.profileUrl} alt="alt"></img></div>
               <Uploader id="uploader" onChange={this.handleFileUpload}  name="my_file" data-images-only data-tabs="file camera url" data-crop="1:1"/>
 
               <br></br>
