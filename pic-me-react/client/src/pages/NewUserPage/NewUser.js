@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import Uploader from "../../components/Uploader/Uploader";
-import "./NewUserPage.css"
+import "./NewUser.css"
 
 class NewUser extends Component {
     constructor(props) {

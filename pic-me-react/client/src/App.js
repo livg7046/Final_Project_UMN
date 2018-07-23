@@ -53,6 +53,7 @@ class App extends Component {
       <Router>
         <Wrapper>
           <Title/>
+          <Route exact path="/" render={(props) => <Login history={props.history} />} />
           <Route exact path="/newuser" render={(props) => <NewUser history={props.history} />} />
           <Route exact path="/login" render={(props) => <Login history={props.history} />} />
           <Route exact path="/question" render={(props) => <Question history={props.history}/>} />
