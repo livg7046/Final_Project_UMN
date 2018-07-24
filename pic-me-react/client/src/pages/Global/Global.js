@@ -49,12 +49,8 @@ class Global extends Component {
 
             <div className="container">
                 <Nav />
-                <div className="Pic">
-                    <img 
-                    src={this.state.mostRecentUserImage.url} 
-                    alt="alt"/>
-                </div>
-                <ImageCard />
+
+                <ImageCard photo={this.state.mostRecentUserImage.url}/>
                 <CommentForm />                
             </div> 
         );
