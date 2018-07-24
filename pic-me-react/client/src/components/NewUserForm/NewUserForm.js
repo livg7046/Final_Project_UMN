@@ -18,7 +18,7 @@ const NewUserForm = () => (
             <label for="loginPassword2Create">Re-Enter New Password</label>
             <input type="text" className="form-control" id="loginPassword2Create" placeholder=""></input>
         </div>
-        <button className="btn btn-primary">Submit</button>
+        <button className="btn btn-danger">Submit</button>
     </form>
     </div>
 );

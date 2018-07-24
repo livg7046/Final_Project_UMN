@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import "./Login.css"
-import { Link } from 'react-router-dom';
-import createHistory from "history/createBrowserHistory";
-import Alert from "../../components/Alert";
-
+// import { Link } from 'react-router-dom';
+// import createHistory from "history/createBrowserHistory";
 // const history = createHistory();
+
   class Login extends Component {
 
     constructor(props) {
@@ -71,7 +70,7 @@ import Alert from "../../components/Alert";
               <div className="form-group">
                   <input type="password" className="form-control" id="loginPasswordInput" placeholder="Enter Password" name="password" value={this.state.password} onChange={this.onInputChange("password")} required></input>
               </div>
-              <button type="button" className="btn" id="loginBtn">Login</button>
+              <button type="button" className="btn" id="loginBtn" onClick={this.onSubmit}>Login</button>
               <br></br>
               {!this.state.isHidden && <Alert />}
               <alert />

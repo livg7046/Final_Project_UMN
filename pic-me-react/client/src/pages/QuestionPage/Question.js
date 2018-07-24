@@ -87,7 +87,7 @@ class Question extends Component {
         this.setState({
             time: new Date().toLocaleString()
         });
-        const currentDate = moment(new Date()).format("M/DD/YYYY");
+        // const currentDate = moment(new Date()).format("M/DD/YYYY");
         if (this.state.time ===`${this.state.currentDate}, 9:13:00 PM`) {
             this.randomQuestion()
         }
@@ -153,6 +153,8 @@ class Question extends Component {
             
                 console.log(res);
             })
+
+        this.props.history.push("/global");
         
         // API.saveUserImage({
         //     photoObject
@@ -205,13 +207,13 @@ class Question extends Component {
                 <button id="getDaily">Get Daily</button> */}
 
                 <div className="Randomize">
-                    <button class="btn btn-danger btn-lg" id="randomize-btn" onClick={this.handleFormSubmit}>Randomize</button>
+                    <button className="btn btn-danger btn-lg" id="randomize-btn" onClick={this.handleFormSubmit}>Randomize</button>
                 </div>
                 <div className="Share">
-                    <button class="btn btn-danger btn-lg" id="share-btn" onClick={this.handleShareButton}>Share </button>
+                    <button className="btn btn-danger btn-lg" id="share-btn" onClick={this.handleShareButton}>Share </button>
                 </div>
                 <div className="Noshare">
-                    <button class="btn btn-danger btn-lg" id="noshare-btn">Not Today</button>
+                    <button className="btn btn-danger btn-lg" id="noshare-btn">Not Today</button>
                 </div>
             </div>
         )};

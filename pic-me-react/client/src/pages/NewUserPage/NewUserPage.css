@@ -3,3 +3,14 @@
     width: 200px;
     border: none;
 }
+
+#submit-btn {
+    /*background-color: transparent;
+    color: coral;*/
+    background-color: lightsalmon;
+    border-color: transparent;
+}
+
+#submit-btn:hover {
+	background-color: coral;
+}

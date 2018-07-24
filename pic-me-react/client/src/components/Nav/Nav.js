@@ -5,16 +5,16 @@ const Nav = (props) => (
     <nav className=" nav navbar navbar-dark">
         <div className="container">
             <div className="btn-group btn-group-lg" role="group" aria-label="User-Nav">
-                <button type="button" className="btn btn-dark" aria-label="Globe"><a href="/Global">
+                <button type="button" className="btn btn-light btn-nav" aria-label="Globe"><a href="/Global">
                     <i className="fas fa-globe-americas"></i></a>
                 </button>
-                {/* <button type="button" class="btn btn-dark" aria-label="Users">
+                {/* <button type="button" class="btn btn-light btn-nav" aria-label="Users">
                     <i class="fas fa-users"></i>
                 </button> */}
-                <button type="button" className="btn btn-dark" aria-label="User"><a href="/UserPage">
+                <button type="button" className="btn btn-light btn-nav" aria-label="User"><a href="/UserPage">
                     <i className="fas fa-user-circle"></i></a>
                 </button>
-                <button type="button" className="btn btn-dark" aria-label="Logout" {...props}>
+                <button type="button" className="btn btn-light btn-nav" aria-label="Logout" {...props}>
                     <i className="fas fa-user-times"></i>
                 </button>
             </div>

@@ -12,12 +12,12 @@ router.post('/register', function(req, res) {
     console.log("=========");
     console.log(req.body);
     if (!req.body.userName || !req.body.password) {
-        res.json({success: false, msg: 'Please enter username and password!'});
+        res.json({success: false, msg: 'Please enter a username and password!'});
     } else {
         const newUser = new User({
             userName: req.body.userName,
             password: req.body.password,
-            url: req.body.url
+            profileUrl: req.body.profileUrl
         });
     // save the user
     // newUser.create(function(err) {
@@ -28,7 +28,8 @@ router.post('/register', function(req, res) {
     // });
     User.create(newUser)
         .then(function(dbNote) {
-            return res.json({Success: true})
+            if (err) return res.json({success: false, msg: 'Username already exists.'})
+            return res.json({Success: true, msg: 'Successfully created new user.'})
         })
     }
 });
