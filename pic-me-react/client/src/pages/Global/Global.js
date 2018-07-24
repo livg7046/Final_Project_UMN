@@ -112,7 +112,6 @@ class Global extends Component {
                     value={this.state.comment}
                     onChange={this.handleInputChange}
                     />
-                                    
             </div> 
         );
     };
