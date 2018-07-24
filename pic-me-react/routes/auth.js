@@ -60,4 +60,12 @@ router.post('/login', function(req, res) {
     });
 });
 
+router.get('/users/:userId', passport.authenticate('jwt', { session: false }), function (req, res, next) {
+    
+    User.find({"_id": req.params.userId }, function (err, UserData) {
+        console.log("UserData: " + UserData)
+        res.json(UserData)
+    });
+})
+
 module.exports = router;
