@@ -12,21 +12,42 @@ import UserPage from "./pages/UserPage";
 // import QuestionsData from "./utils/Questions.json";
 import GlobalPage from './pages/Global/Global';
 import Daily from './pages/Daily/Daily';
+import axios from 'axios';
 
 class App extends Component {
   state = {
-    user: {
-      image: "https://ucarecdn.com/eda32654-f96e-4081-86b6-11cf46d8d05f/-/crop/1735x1738/1,0/-/preview/"
-    }
+    user: [],
+    profilePic: '',
+    image: "https://ucarecdn.com/eda32654-f96e-4081-86b6-11cf46d8d05f/-/crop/1735x1738/1,0/-/preview/"
+
   }
+
+  componentDidMount = () => {
+    this.getUsers();
+  }
+
+  getUsers() {
+    axios.get(`/api/auth/users/${localStorage.getItem('userId')}`)
+    .then(res => {
+      const user = res.data;
+      this.setState({ user: user });
+      console.log(user);
+      console.log(this.state.user)
+      const mappingFunction = p => p.profileUrl;
+      const url = ((this.state.user).map(mappingFunction));
+      this.setState({ profilePic: (this.state.user).map(mappingFunction)})
+      })
+  }
+
+
   render() {
-    console.log(this.props, ' are props')
+    console.log(this.state.profilePic);
     return (
       <div className="App">
       <Router>
         <Wrapper>
           <Title 
-            src={this.state.user.image}/>
+            src={(this.state.profilePic)}/>
           <Route exact path="/" render={(props) => <Login history={props.history} />} />
           <Route exact path="/newuser" render={(props) => <NewUser history={props.history} />} />
           <Route exact path="/login" render={(props) => <Login history={props.history} />} />
