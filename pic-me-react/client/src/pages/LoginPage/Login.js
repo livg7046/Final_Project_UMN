@@ -12,7 +12,8 @@ import "./Login.css"
       this.state = {
         userName:'',
         password: '',
-        message: ''
+        message: '',
+        isHidden: true
       };
     }
 
@@ -21,6 +22,10 @@ import "./Login.css"
         [propertyName]: event.target.value
       });
     };
+
+    alertToggle() {
+      this.state.isHidden = false;
+    }
 
     onSubmit = event => {
       event.preventDefault();
@@ -46,6 +51,7 @@ import "./Login.css"
         .catch((error) => {
           if(error.response.status === 401) {
             this.setState({ message: 'Login failed. Username or password do not match' });
+            this.alertToggle();
             console.log(this.state.message);
           }
         });
@@ -66,6 +72,10 @@ import "./Login.css"
               </div>
               <button type="button" className="btn" id="loginBtn" onClick={this.onSubmit}>Login</button>
               <br></br>
+              {!this.state.isHidden && <Alert />}
+              <alert />
+
+
               <br></br>
               <h6>Don't have an account yet? <a href="/newuser"id="link">Create an account now!</a></h6>
           </form>
