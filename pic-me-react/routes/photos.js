@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Photo = require('../models/Photo.js');
+const Comment = require('../models/Comment.js');
 const passport = require('passport');
 require('../config/passport')(passport);
 
@@ -9,6 +10,7 @@ router.get('/', passport.authenticate('jwt', { session: false }), function (req,
     var token = getToken(req.headers);
     if (token) {
         Photo.find(function (err, photos) {
+            console.log("=== Getting All Photos ===")
             if (err) return next(err);
             res.json(photos);
         });
@@ -44,6 +46,32 @@ router.get('/:userId', passport.authenticate('jwt', { session: false }), functio
         res.json(photos);
     })
 })
+
+// Comments
+// Get all
+router.get('/:id/comments', passport.authenticate('jwt', { session: false }), function (req, res, next) {
+    console.log("getting comments")
+    Photo.find({_id: req.params.id})
+    .populate('comments')
+    .then(function(comments) {
+        console.log('comments');
+        console.log(comments);
+        res.json(comments);
+    })
+});
+
+// Save comment
+router.post('/:id/comments', passport.authenticate('jwt', { session: false }), function (req, res, next) {
+    console.log("saving comment");
+
+    Comment.create(req.body)
+        .then(function(dbComment) {
+            return Photo.findOneAndUpdate({_id: req.params.id}, {$push: {comments: dbComment._id}}, {new: true})
+        })
+        .then(function(dbPhoto) {
+            res.json(dbPhoto);
+        })
+});
 
 getToken = function (headers) {
     if (headers && headers.authorization) {

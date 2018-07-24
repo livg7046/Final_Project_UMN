@@ -1,7 +1,7 @@
 import React from "react";
 import "./CommentForm.css"
 
-const CommentForm = () => (
+const CommentForm = (props) => (
     // <div className="row">
     //     <div className="col-md-10 offset-md-1">
     //         <div className="card card-info">
@@ -63,10 +63,10 @@ const CommentForm = () => (
         <div className="actionBox">
         <form className="form-inline" role="form">
                 <div className="form-group">
-                    <input className="form-control" type="text" placeholder="Your comments" />
+                    <input className="form-control" type="text" placeholder="Your comments" value={props.value} onChange={props.onChange} />
                 </div>
                 <div className="form-group">
-                    <button className="btn comment-btn">Add</button>
+                    <button className="btn comment-btn" onClick={props.onClick}>Add</button>
                 </div>
             </form>
             <ul className="commentList">
