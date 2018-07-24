@@ -4,6 +4,7 @@ import axios from 'axios';
 import Nav from "../../components/Nav";
 import ImageCard from "../../components/ImageCard/ImageCard";
 import CommentForm from "../../components/CommentForm";
+import { Redirect } from 'react-router-dom'
 
 class Global extends Component {
 
@@ -14,8 +15,36 @@ class Global extends Component {
         userId: '',
         imageUrl: 'https://vignette.wikia.nocookie.net/uncyclopedia/images/0/01/DramaticQuestionMark.png/revision/latest?cb=20060419021703',
         caption:'',
+        redirect: false
 
     };
+
+    handleLikeClick() {
+        console.log("like button clicked")
+        this.setState({
+            likes:this.state.likes + 1
+        });
+    };
+
+    setRedirect = () => {
+        this.setState({
+            redirect:true
+        })
+    };
+
+    logout = () => {
+        if (this.state.redirect) {
+            console.log("Logout!");
+            this.setState({
+            userName:'',
+            userId:''
+        })
+        localStorage.removeItem('jwtToken');
+        window.location.reload();
+        return <Redirect to='/login'/>
+        }
+    };
+
 
     componentDidMount = () => {
         
@@ -39,7 +68,7 @@ class Global extends Component {
             })
             .catch((error) => {
                 if(error.response.status === 401) {
-                    this.props.history.push("/login");
+                    // this.props.history.push("/login");
                 }
             });
     };
@@ -48,9 +77,10 @@ class Global extends Component {
         return (
 
             <div className="container">
-                <Nav />
+                {this.logout()}
+                <Nav onClick={() => this.setRedirect()} />
 
-                <ImageCard photo={this.state.mostRecentUserImage.url}/>
+                <ImageCard photo={this.state.mostRecentUserImage.url} /*clicked={this.handleLikeClick()}*//>
                 <CommentForm />                
             </div> 
         );
