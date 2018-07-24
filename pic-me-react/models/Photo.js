@@ -25,16 +25,25 @@ const PhotoSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User"
     },
+    // comments: [
+    //     {
+    //         author: {
+    //             type: mongoose.Schema.Types.ObjectId,
+    //             ref: 'User'
+    //         },
+    //         body: String
+    //     }
+    // ],
     comments: [
         {
+            type: Schema.Types.ObjectId,
+            ref: "Comment",
             author: {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: 'User'
-            },
-            type: String
+            }
         }
-    ],
-    
+    ]
 });
 
 const Photo = mongoose.model("Photo", PhotoSchema);
