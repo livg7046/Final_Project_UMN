@@ -43,7 +43,7 @@ import Alert from "../../components/Alert"
 
           console.log(result);
           console.log(this.state);
-          console.log(this.props);
+          // console.log(this.props);
 
           localStorage.setItem('jwtToken', result.data.token);
           localStorage.setItem('userId', result.data.userId);

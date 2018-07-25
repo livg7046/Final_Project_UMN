@@ -12,9 +12,13 @@ class Global extends Component {
         mostRecentUserImage: '',
         userName: '',
         userId: '',
-        imageUrl: 'https://vignette.wikia.nocookie.net/uncyclopedia/images/0/01/DramaticQuestionMark.png/revision/latest?cb=20060419021703',
+        imageUrl: '',
         caption:'',
-        comments: [],
+        comments: [
+            'Test comment.',
+            'This test comment is very llllllllllllllllllllllllllooooooooooooooooooooonnnnnnnnnnnnnnngggggggggggggggggggggg!!!!!',
+            'This is the LaSt TeSt CoMmEnT'
+        ],
         likes: "",
         imageId: '',
         comment: ''
@@ -50,6 +54,8 @@ class Global extends Component {
                     this.props.history.push("/login");
                 }
             });
+
+        this.getAllPhotos();
     };
 
     handleInputChange = event => {
@@ -79,7 +85,7 @@ class Global extends Component {
                 })
         })
 
-    }
+    };
 
     handleCommentAdd = (event) => {
         event.preventDefault();
@@ -97,13 +103,26 @@ class Global extends Component {
             .then(res => {
                 console.log(res);
             })
+    };
+
+    getAllPhotos = () => {
+        axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+        axios.get('/api/photo')
+            .then(res => {
+                console.log(res.data)
+            })
     }
+    logout = () => {
+        localStorage.removeItem('jwtToken');
+        window.location.reload();
+        console.log("Logout!")
+    };
 
     render() {
         return (
 
             <div className="container">
-                <Nav />
+                <Nav onClick={() => this.logout()} />
                 <div className="Pic">
                     <img 
                     src={this.state.mostRecentUserImage.url} 
