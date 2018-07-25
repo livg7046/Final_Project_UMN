@@ -24,16 +24,17 @@ class Global extends Component {
     componentDidMount = () => {
 
         console.log(localStorage.getItem('userName'))
-        console.log(localStorage.getItem('userId'))
+        // console.log(localStorage.getItem('userId'))
         this.setState({user: localStorage.getItem('userName')})
         this.setState({userId: localStorage.getItem('userId')})
         const url = `/api/photo/${localStorage.getItem('userId')}`;
-        console.log(url)
+        // console.log(url)
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
         axios.get(url) 
             .then(res => {
-                console.log(res.data);
-                console.log(this.state.userImages)
+
+                // console.log(res.data);
+                // console.log(this.state.userImages)
 
                 // Retrieve the last image from the userImages array
                 this.setState({
@@ -42,7 +43,7 @@ class Global extends Component {
                 }, () => {
                     this.getComments();
                 });
-                console.log(this.state.mostRecentUserImage);
+                // console.log(this.state.mostRecentUserImage);
             })
             .catch((error) => {
                 if(error.response.status === 401) {
@@ -54,23 +55,27 @@ class Global extends Component {
     handleInputChange = event => {
 
         event.preventDefault();
-        console.log(event);
         this.setState({comment: event.target.value})
     };
 
     getComments = () => {
         this.setState( { imageId: this.state.mostRecentUserImage._id }, () => {
-            console.log(this.state, 'getting comments')
+            console.log('getting comments')
+            console.log(this.state)
 
-            const url = `/api/photo/${this.state.imageId}`;
-            console.log(url)
+            const url = `/api/photo/${this.state.imageId}/comments`;
+            // console.log(url)
     
             axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
     
-            axios.get(`/api/photo/${this.state.imageId}/comments`)
+            axios.get(url)
                 .then(res => {
-                    console.log(res.data.comments);
-                    this.setState({comments: res.data.comments})
+                    console.log(res.data, 'comment data');
+
+                    // const commentData = res.data.map(res.data.comments)
+                    // console.log(commentData)
+                    // this.setState({comments: res.data.comments})
+                    // console.log(this.state.comments.body)
                 })
         })
 
@@ -78,7 +83,6 @@ class Global extends Component {
 
     handleCommentAdd = (event) => {
         event.preventDefault();
-        console.log("comment test")
         
         let commentObject = {
             author: this.state.userId,

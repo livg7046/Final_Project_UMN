@@ -112,7 +112,7 @@ class Question extends Component {
     handleInputChange = event => {
 
         event.preventDefault();
-        console.log(event);
+        // console.log(event);
         this.setState({search: event.target.value})
     };
 
