@@ -9,22 +9,26 @@ require('../config/passport')(passport);
 router.get('/', passport.authenticate('jwt', { session: false }), function (req, res) {
     var token = getToken(req.headers);
     if (token) {
-        Photo.find(function (err, photos) {
-            console.log("=== Getting All Photos ===")
-            if (err) return next(err);
-            res.json(photos);
-        });
+        // Photo.find(req.query, function (err, photos) {
+        //     console.log("=== Getting All Photos ===")
+        //     if (err) return next(err);
+        //     res.json(photos);
+        // });
+
+        Photo
+        .find(req.query)
+        .sort({ likes: -1 })
+        .then(photos => res.json(photos))
+
     } else {
         return res.status(403).send({ success: false, msg: 'Unauthorized.' });
     }
 });
 
-// Save Image
+// Save photo
 router.post('/', passport.authenticate('jwt', { session: false }), function (req, res, next) {
     var token = getToken(req.headers);
     if (token) {
-        console.log("TOKEN");
-        console.log(req.body);
         Photo.create(req.body, function (err, post) {
             console.log("==== Save Image ====")
             console.log(req.body);
@@ -36,44 +40,88 @@ router.post('/', passport.authenticate('jwt', { session: false }), function (req
     }
 });
 
-// Get User Images
-router.get('/:userId', passport.authenticate('jwt', { session: false }), function (req, res, next) {
-    console.log("user")
-    Photo.find({userId: req.params.userId }, function(err, photos) {
-        console.log("=== Get User Images ===")
-        console.log(photos);
-        if (err) return next(err);
-        res.json(photos);
-    })
-})
+// Edit photo
+router.put('/:id', passport.authenticate('jwt', { session: false }), function (req, res, next) {
+    var token = getToken(req.headers);
+    if (token) {
+        Photo.findOneAndUpdate({ _id: req.params.id }, req.body, function(err, photo) {
+            console.log("=== Updating photo ===")
 
-// Comments
-// Get all
-router.get('/:id/comments', passport.authenticate('jwt', { session: false }), function (req, res, next) {
-    console.log("getting comments")
-    Photo.find({_id: req.params.id})
-    .populate('comments')
-    .then(function(comments) {
-        console.log('comments');
-        console.log(comments);
-        res.json(comments);
-    })
+        })
+    } else {
+        return res.status(403).send({ success: false, msg: 'Unauthorized.' });
+    }
 });
 
-// Save comment
-router.post('/:id/comments', passport.authenticate('jwt', { session: false }), function (req, res, next) {
-    console.log("saving comment");
+// Get User photos
+router.get('/:userId', passport.authenticate('jwt', { session: false }), function (req, res, next) {
+    var token = getToken(req.headers);
+    if (token) {
+        Photo.find({userId: req.params.userId }, function(err, photos) {
+            console.log("=== Get User Images ===")
+            console.log(photos);
+            if (err) return next(err);
+            res.json(photos);
+        });
+    } else {
+        return res.status(403).send({ success: false, msg: 'Unauthorized.' });
+    }
+});
 
-    Comment.create(req.body)
+// Get all photo comments
+router.get('/:id/comments', passport.authenticate('jwt', { session: false }), function (req, res, next) {
+    var token = getToken(req.headers);
+    if (token) {
+        console.log("=== Get Comments ===")
+        Photo.find({_id: req.params.id})
+        .populate('comments')
+        .then(function(comments) {
+            console.log(comments);
+            res.json(comments);
+        });
+    } else {
+        return res.status(403).send({ success: false, msg: 'Unauthorized.' });
+    }
+});
+
+// Save comment to photo
+router.post('/:id/comments', passport.authenticate('jwt', { session: false }), function (req, res, next) {
+    var token = getToken(req.headers);
+    if (token) {
+        console.log("=== Save Comments ===");
+        Comment.create(req.body)
         .then(function(dbComment) {
             return Photo.findOneAndUpdate({_id: req.params.id}, {$push: {comments: dbComment._id}}, {new: true})
         })
         .then(function(dbPhoto) {
             res.json(dbPhoto);
-        })
+        });
+    } else {
+        return res.status(403).send({ success: false, msg: 'Unauthorized.' });
+    }
 });
 
-getToken = function (headers) {
+// Edit comment
+router.put('/:id/comments', passport.authenticate('jwt', { session: false }), function (req, res, next) {
+    var token = getToken(req.headers);
+    if (token) {
+        // code
+    } else {
+        return res.status(403).send({ success: false, msg: 'Unauthorized.' });
+    }
+}); 
+
+// Delete comment
+router.delete('/:id/comments', passport.authenticate('jwt', { session: false }), function (req, res, next) {
+    var token = getToken(req.headers);
+    if (token) {
+        // code
+    } else {
+        return res.status(403).send({ success: false, msg: 'Unauthorized.' });
+    }
+});
+
+getToken = headers => {
     if (headers && headers.authorization) {
         var parted = headers.authorization.split(' ');
         if (parted.length === 2) {

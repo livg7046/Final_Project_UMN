@@ -47,13 +47,13 @@ class App extends Component {
         <Wrapper>
           <Title 
             src={(this.state.profilePic)}/>
-          <Route exact path="/" render={(props) => <Login history={props.history} />} />
-          <Route exact path="/newuser" render={(props) => <NewUser history={props.history} />} />
-          <Route exact path="/login" render={(props) => <Login history={props.history} />} />
-          <Route exact path="/question" render={(props) => <Question history={props.history}/>} />
-          <Route exact path="/UserPage" render={() => ( <div><UserPage /></div>) } />
-          <Route exact path="/global" render={() => ( <div><GlobalPage history={this.props.history}/></div>) } />
-          <Route exact path="/daily" render={() => ( <div><Daily /></div>) } />
+          <Route exact path="/" render={(props) => <Login history={props.history} /> } />
+          <Route exact path="/newuser" render={(props) => <NewUser history={props.history} /> } />
+          <Route exact path="/login" render={(props) => <Login history={props.history} /> } />
+          <Route exact path="/question" render={(props) => <Question history={props.history}/> } />
+          <Route exact path="/userpage" render={(props) => <UserPage history={props.history}/> } />
+          <Route exact path="/global" render={(props) => <GlobalPage history={props.history}/> } />
+          <Route exact path="/daily" render={(props) => <Daily history={props.history}/> } />
         </Wrapper>
       </Router>
       </div>
