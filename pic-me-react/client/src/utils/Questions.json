@@ -1,42 +1,42 @@
 [
     {
-        "question": "Who is your favorite celebrity?",
+        "text": "Who is your favorite celebrity?",
         "id": 1
     },
     {
-        "question": "What did you dream about last night?",
+        "text": "What did you dream about last night?",
         "id": 2
     },
     {
-        "question": "What are you doing today?",
+        "text": "What are you doing today?",
         "id": 3
     },
     {
-        "question": "What is your favorite food?",
+        "text": "What is your favorite food?",
         "id": 4
     },
     {
-        "question": "What is the scariest thing you've ever done?",
+        "text": "What is the scariest thing you've ever done?",
         "id": 5
     },
     {
-        "question": "What is your favorite movie?",
+        "text": "What is your favorite movie?",
         "id":6
     },
     {
-        "question": "What was your favorite childhood cartoon?",
+        "text": "What was your favorite childhood cartoon?",
         "id":7
     },
     {
-        "question": "What do you wish you were doing right now?",
+        "text": "What do you wish you were doing right now?",
         "id":8
     },
     {
-        "question": "What is your favorite color?",
+        "text": "What is your favorite color?",
         "id":9
     },
     {
-        "question": "What is your first name?",
+        "text": "What is your first name?",
         "id":10
     },
     {
