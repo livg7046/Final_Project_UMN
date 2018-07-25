@@ -27,7 +27,7 @@ router.post('/register', function(req, res) {
     //     res.json({success: true, msg: 'Successful created new user.'});
     // });
     User.create(newUser)
-        .then(function(dbNote) {
+        .then(function(err, dbNote) {
             if (err) return res.json({success: false, msg: 'Username already exists.'})
             return res.json({Success: true, msg: 'Successfully created new user.'})
         })

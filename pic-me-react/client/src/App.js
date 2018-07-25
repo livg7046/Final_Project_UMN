@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, } from "react-router-dom";
 import './App.css';
-import Nav from "./components/Nav";
+// import Nav from "./components/Nav";
 import Title from "./components/Title";
 import Question from './pages/QuestionPage';
 import Wrapper from "./components/Wrapper";
@@ -30,17 +30,17 @@ class App extends Component {
     .then(res => {
       const user = res.data;
       this.setState({ user: user });
-      console.log(user);
-      console.log(this.state.user)
+      console.log(user, "user data");
+      // console.log(this.state.user)
       const mappingFunction = p => p.profileUrl;
-      const url = ((this.state.user).map(mappingFunction));
+      // const url = ((this.state.user).map(mappingFunction));
       this.setState({ profilePic: (this.state.user).map(mappingFunction)})
       })
   }
 
 
   render() {
-    console.log(this.state.profilePic);
+    // console.log(this.state.profilePic);
     return (
       <div className="App">
       <Router>
