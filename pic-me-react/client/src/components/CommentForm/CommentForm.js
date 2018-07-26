@@ -1,7 +1,7 @@
 import React from "react";
 import "./CommentForm.css"
 
-const CommentForm = () => (
+const CommentForm = (props) => (
     // <div className="row">
     //     <div className="col-md-10 offset-md-1">
     //         <div className="card card-info">
@@ -61,18 +61,18 @@ const CommentForm = () => (
                             
                         </div> */}
         <div className="actionBox">
-        <form className="form-inline" role="form">
+        <form className="form-inline">
                 <div className="form-group">
-                    <input className="form-control" type="text" placeholder="Your comments" />
+                    <input className="form-control" type="text" placeholder="Your comments" value={props.value} onChange={props.onChange} />
                 </div>
                 <div className="form-group">
-                    <button className="btn comment-btn">Add</button>
+                    <button className="btn comment-btn" onClick={props.onClick}>Add</button>
                 </div>
             </form>
             <ul className="commentList">
                 <li>
                     <div className="commenterImage">
-                        <img src="http://placekitten.com/50/50" />
+                        <img src="http://placekitten.com/50/50" alt="img"/>
                     </div>
                     <div className="commentText">
                         <p className="">Hello this is a test comment.</p> <span className="date sub-text">on March 5th, 2014</span>
@@ -80,7 +80,7 @@ const CommentForm = () => (
                 </li>
                 <li>
                     <div className="commenterImage">
-                        <img src="http://placekitten.com/45/45" />
+                        <img src="http://placekitten.com/45/45" alt="img"/>
                     </div>
                     <div className="commentText">
                         <p className="">Hello this is a test comment and this comment is particularly very long and it goes on and on and on.</p> <span className="date sub-text">on March 5th, 2014</span>
@@ -88,7 +88,7 @@ const CommentForm = () => (
                 </li>
                 <li>
                     <div className="commenterImage">
-                        <img src="http://placekitten.com/40/40" />
+                        <img src="http://placekitten.com/40/40" alt="img"/>
                     </div>
                     <div className="commentText">
                         <p className="">Hello this is a test comment.</p> <span className="date sub-text">on March 5th, 2014</span>

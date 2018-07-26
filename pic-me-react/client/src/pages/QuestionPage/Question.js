@@ -8,7 +8,7 @@ import API from "../../utils/API";
 class Question extends Component {
     state = {
         questions,
-        currentQ: questions[0].question,
+        currentQ: questions[0].text,
         time: new Date().toLocaleString(),
         currentDate: moment(new Date()).format("M/DD/YYYY"),
         search:"",
@@ -22,10 +22,10 @@ class Question extends Component {
     };
     
     componentDidMount = () => {
-        // axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
-        console.log(localStorage.getItem('jwtToken'))
-        console.log(localStorage.getItem('userName'))
-        console.log(localStorage.getItem('userId'))
+
+        // console.log(localStorage.getItem('jwtToken'))
+        // console.log(localStorage.getItem('userName'))
+        // console.log(localStorage.getItem('userId'))
         this.setState({user: localStorage.getItem('userName')})
         this.setState({userId: localStorage.getItem('userId')})
 
@@ -78,7 +78,7 @@ class Question extends Component {
         timeLeft.sec = diff;
     
         this.setState({...this.state, ...timeLeft})
-        // console.log(this.state)
+      
     
     }
 
@@ -88,7 +88,7 @@ class Question extends Component {
             time: new Date().toLocaleString()
         });
         // const currentDate = moment(new Date()).format("M/DD/YYYY");
-        if (this.state.time ===`${this.state.currentDate}, 9:13:00 PM`) {
+        if (this.state.time ===`${this.state.currentDate}, 7:44:40 PM`) {
             this.randomQuestion()
         }
         
@@ -112,20 +112,20 @@ class Question extends Component {
     handleInputChange = event => {
 
         event.preventDefault();
-        console.log(event);
+        // console.log(event);
         this.setState({search: event.target.value})
     };
 
     randomQuestion() {
         let j = Math.floor(Math.random()*questions.length);
         console.log(j);
-        let question = questions[j].question;
-        console.log(question);
-        // this.setState({currentQ: question});
-        if (this.state.currentQ === question) {
+        let quest = questions[j].text;
+        console.log(this.state.currentQ);
+   
+        if (this.state.currentQ === quest) {
             this.randomQuestion() 
         } else {
-            this.setState({currentQ:question})
+            this.setState({currentQ:quest})
         } 
     };
 
@@ -216,6 +216,7 @@ class Question extends Component {
                 <div className="Noshare">
                     <button className="btn btn-danger btn-lg" id="noshare-btn">Not Today</button>
                 </div>
+                <button onClick={this.randomQuestion.bind(this)}>New Question</button>
             </div>
         )};
 }

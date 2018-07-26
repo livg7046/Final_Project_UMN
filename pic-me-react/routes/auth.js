@@ -8,8 +8,8 @@ const router = express.Router();
 const User = require("../models/User");
 
 // Register new user
-router.post('/register', function(req, res) {
-    console.log("=========");
+router.post('/register', (req, res) => {
+    console.log("=== New User Register ===");
     console.log(req.body);
     if (!req.body.userName || !req.body.password) {
         res.json({success: false, msg: 'Please enter a username and password!'});
@@ -19,15 +19,8 @@ router.post('/register', function(req, res) {
             password: req.body.password,
             profileUrl: req.body.profileUrl
         });
-    // save the user
-    // newUser.create(function(err) {
-    //     if (err) {
-    //         return res.json({success: false, msg: 'Username already exists.'});
-    //     }
-    //     res.json({success: true, msg: 'Successful created new user.'});
-    // });
     User.create(newUser)
-        .then(function(dbNote) {
+        .then((err, dbNote) => {
             if (err) return res.json({success: false, msg: 'Username already exists.'})
             return res.json({Success: true, msg: 'Successfully created new user.'})
         })
@@ -35,10 +28,11 @@ router.post('/register', function(req, res) {
 });
 
 // Sign-in
-router.post('/login', function(req, res) {
+router.post('/login', (req, res) => {
     User.findOne({
         userName: req.body.userName
-    }, function(err, user) {
+    }, (err, user) => {
+        console.log("=== User Signed In ===")
         console.log(user);
         if (err) throw err;
 
@@ -46,7 +40,7 @@ router.post('/login', function(req, res) {
             res.status(401).send({success: false, msg: 'Authentication failed. User not found.'});
         } else {
             // check if password matches
-            user.comparePassword(req.body.password, function (err, isMatch) {
+            user.comparePassword(req.body.password, (err, isMatch) => {
                 if (isMatch && !err) {
                     // if user is found and password is right create a token
                     const token = jwt.sign(user.toJSON(), settings.secret);
@@ -60,9 +54,9 @@ router.post('/login', function(req, res) {
     });
 });
 
-router.get('/users/:userId', passport.authenticate('jwt', { session: false }), function (req, res, next) {
+router.get('/users/:id', passport.authenticate('jwt', { session: false }), (req, res, next) => {
     
-    User.find({"_id": req.params.userId }, function (err, UserData) {
+    User.find({_id: req.params.id }, (err, UserData) => {
         console.log("UserData: " + UserData)
         res.json(UserData)
     });
