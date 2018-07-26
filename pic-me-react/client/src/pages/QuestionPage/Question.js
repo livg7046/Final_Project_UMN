@@ -176,15 +176,19 @@ class Question extends Component {
                     </p>
                 <div>
                     <form>
-                        <label> Answer:
+                        <label>
                             <input 
                             type="text" 
                             name="search"
+                            className="form-control"
+                            id="answer"
+                            placeholder="Answer"
                             value={this.state.search}
                             onChange={this.handleInputChange}
                             />
                         </label>
-                        <button 
+                        <button
+                            className="btn btn-danger"
                             id="getGif"
                             disabled={!(this.state.search)}
                             onClick={this.handleFormSubmit}>
