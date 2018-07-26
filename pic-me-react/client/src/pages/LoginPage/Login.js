@@ -76,7 +76,7 @@ import Alert from "../../components/Alert"
               <div className="form-group">
                   <input type="password" className="form-control" id="loginPasswordInput" placeholder="Enter Password" name="password" value={this.state.password} onChange={this.onInputChange("password")} required></input>
               </div>
-              <button type="button" className="btn btn-danger" id="loginBtn" onClick={this.onSubmit}>Login</button>
+              <button type="submit" className="btn btn-danger" id="loginBtn" value="Submit" onClick={this.onSubmit}>Login</button>
               <br></br>
               {!this.state.isHidden && <Alert />}
               <br></br>
