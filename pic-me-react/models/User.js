@@ -19,6 +19,9 @@ const UserSchema = new Schema({
         require: false,
         unique: false
     },
+    likedPhotos:{
+        type: []
+    }
 });
 
 UserSchema.pre('save', function (next) {

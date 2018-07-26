@@ -166,7 +166,7 @@ class Question extends Component {
     render() {
         return (
             <div className="container">
-                <Nav onClick={() => this.logout()} />
+                {/* <Nav onClick={() => this.logout()} /> */}
                 {/* <h1 className="clock">{this.state.time}</h1> */}
                 <h2 className="clock">{this.state.currentDate}</h2>
                 <h3 className="timer">{this.state.hours} Hours {this.state.min} Minutes {this.state.sec} Seconds Remaining!
@@ -197,6 +197,7 @@ class Question extends Component {
                     <img
                         alt="404 Please Search Again"
                         src={this.state.photo}
+                        
                     />
                 </div>
                     {/* <form>

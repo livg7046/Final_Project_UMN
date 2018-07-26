@@ -28,7 +28,8 @@ import Alert from "../../components/Alert"
       console.log("in alertToggle")
       this.setState({isHidden: false});
       console.log(this.state.isHidden);
-    }
+    };
+
 
     onSubmit = event => {
       event.preventDefault();
