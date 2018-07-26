@@ -57,7 +57,7 @@ class NewUser extends Component {
               </div>
               <div className="form-group">
                   <label htmlFor="loginPassword1Create">Enter New Password</label>
-                  <input name="password1" value={this.state.password} onChange={this.handleInputChange("password")} type="text" className="form-control" id="loginPassword1Create" placeholder="" required></input>
+                  <input name="password1" value={this.state.password} onChange={this.handleInputChange("password")} type="password" className="form-control" id="loginPassword1Create" placeholder="" required></input>
               </div>
 
               <div><img id="image-preview" src={this.state.profileUrl} alt="alt"></img></div>

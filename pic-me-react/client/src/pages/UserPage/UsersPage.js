@@ -2,50 +2,46 @@ import React, { Component } from "react";
 import axios from 'axios';
 import Nav from "../../components/Nav";
 import ImageCard from "../../components/ImageCard/ImageCard";
+import { Input, FormBtn } from "../../components/Form";
 // import CommentForm from "../../components/CommentForm";
 import './UsersPage.css';
 
 class UsersPage extends Component {
 
-    state={
+    state = {
         userImages: [ ],
         mostRecentUserImage: '',
         userName: '',
         userId: '',
         imageUrl: '',
-        caption:'',
-        comments: [],
-        likes: "",
         imageId: '',
-        comment: ''
-
+        caption: '',
     };
 
     componentDidMount = () => {
 
-        console.log('hi', localStorage.getItem('userName'))
-        // console.log(localStorage.getItem('userId'))
         this.setState({user: localStorage.getItem('userName')})
         this.setState({userId: localStorage.getItem('userId')})
+
+        this.getUserImages();
+    };
+
+    getUserImages = () => {
+
         const url = `/api/photo/${localStorage.getItem('userId')}`;
-        // console.log(url)
+
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
-        axios.get(url) 
+
+        axios.get(url)
             .then(res => {
-
-                // console.log(res.data);
-                // console.log(this.state.userImages)
-
-                // Retrieve the last image from the userImages array
+                console.log(`Images`, res.data);
                 this.setState({
+                    userImages: res.data,
                     mostRecentUserImage: (res.data[res.data.length-1]),
-                    userImages: res.data
-                }, () => {
-                    console.log(this.state.userImages)
-                    this.getComments();
                     
+                }, () => {
+                    console.log(`Images`, this.state.userImages)
                 });
-                // console.log(this.state.mostRecentUserImage);
             })
             .catch((error) => {
                 if(error.response.status === 401) {
@@ -55,50 +51,26 @@ class UsersPage extends Component {
     };
 
     handleInputChange = event => {
-
         event.preventDefault();
-        this.setState({comment: event.target.value})
+        this.setState({caption: event.target.value})
     };
 
-    getComments = () => {
-        this.setState( { imageId: this.state.mostRecentUserImage._id }, () => {
-            console.log('getting comments')
-            console.log(this.state)
-
-            const url = `/api/photo/${this.state.imageId}/comments`;
-            // console.log(url)
-    
-            axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
-    
-            axios.get(url)
-                .then(res => {
-                    console.log(res.data, 'comment data');
-
-                    // const commentData = res.data.map(res.data.comments)
-                    // console.log(commentData)
-                    // this.setState({comments: res.data.comments})
-                    // console.log(this.state.comments.body)
-                })
-        })
-    };
-
-    // handleCommentAdd = (event) => {
-    //     event.preventDefault();
+    handleFormSubmit = (event) => {
+        event.preventDefault();
         
-    //     let commentObject = {
-    //         author: this.state.userId,
-    //         body: this.state.comment,
-    //     };
+        let captionObject = {
+            caption: this.state.caption
+        };
 
-    //     console.log(commentObject);
+        axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
 
-    //     axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+        axios.put(`/api/photo/${this.state.mostRecentUserImage._id}`, captionObject)
+            .then(res => {
+                console.log(res);
+            })
 
-    //     axios.post(`/api/photo/${this.state.imageId}/comments`, commentObject)
-    //         .then(res => {
-    //             console.log(res);
-    //         })
-    // };
+            window.location.reload();
+    };
 
     logout = () => {
         localStorage.removeItem('jwtToken');
@@ -108,21 +80,29 @@ class UsersPage extends Component {
 
     render() {
         return (
-
             <div className="container">
                 <Nav onClick={() => this.logout()} />
-                {/* <div className="Pic">
-                    <img 
-                    src={this.state.mostRecentUserImage.url} 
-                    alt="alt"/>
-                </div> */}
-                <ImageCard photo={this.state.mostRecentUserImage.url}/>
-                {/* <CommentForm 
-                    onClick={this.handleCommentAdd}
-                    name="comment"
-                    value={this.state.comment}
-                    onChange={this.handleInputChange}
-                    /> */}
+                <h1>{this.state.user}'s Photo of the Day</h1>
+                <ImageCard 
+                    photo={this.state.mostRecentUserImage.url}
+                    caption={this.state.mostRecentUserImage.caption}
+                    likes={this.state.mostRecentUserImage.likes}
+                    user="YOU !"
+                />
+                <form> 
+                    <h5>Update Caption Here</h5>
+                    <Input
+                        value={this.state.caption}
+                        onChange={this.handleInputChange}
+                    />
+                    <FormBtn 
+                        disabled={!(this.state.caption)}
+                        onClick={this.handleFormSubmit}    
+                    >
+                        Submit
+                    </FormBtn>
+                </form>
+                
             </div> 
         );
     };
