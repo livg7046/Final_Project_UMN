@@ -234,7 +234,7 @@ class Question extends Component {
                 <div className="Noshare">
                     <button className="btn btn-danger btn-lg" id="noshare-btn">Not Today</button>
                 </div>
-                <button onClick={this.randomQuestion.bind(this)}>New Question</button>
+                {/*<button onClick={this.randomQuestion.bind(this)}>New Question</button>*/}
             </div>
         )};
 }

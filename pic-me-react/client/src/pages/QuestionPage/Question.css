@@ -1,11 +1,12 @@
 #randomize-btn, #share-btn, #noshare-btn {
   margin-bottom: 12px;
+  width: 125px;
 }
 
 #getGif {
   margin-left: 8px;
 }
 
-#answer {
+/*#answer {
   
-}
+}*/
