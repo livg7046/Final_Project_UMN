@@ -4,7 +4,6 @@ import axios from 'axios';
 import Nav from "../../components/Nav";
 import ImageCard from "../../components/ImageCard/ImageCard";
 import CommentForm from "../../components/CommentForm";
-import { Redirect } from 'react-router-dom'
 
 class Global extends Component {
     constructor(props) {
@@ -26,7 +25,8 @@ class Global extends Component {
             'This is the LaSt TeSt CoMmEnT'
         ],
         imageId: '',
-        comment: ''
+        comment: '',
+        allImages: []
     };
 
     handleLikeClick = event => {
@@ -54,31 +54,11 @@ class Global extends Component {
         console.log(this.state.likes);
     };
 
-    setRedirect = () => {
-        this.setState({
-            redirect:true
-        })
-    };
-
-    logout = () => {
-        if (this.state.redirect) {
-            console.log("Logout!");
-            this.setState({
-            userName:'',
-            userId:''
-        })
-        localStorage.removeItem('jwtToken');
-        window.location.reload();
-        return <Redirect to='/login'/>
-        }
-    };
-
-
     componentDidMount = () => {
 
         console.log(localStorage.getItem('userName'))
         // console.log(localStorage.getItem('userId'))
-        this.setState({user: localStorage.getItem('userName')})
+        this.setState({userName: localStorage.getItem('userName')})
         this.setState({userId: localStorage.getItem('userId')})
         
         const url = `/api/photo/${localStorage.getItem('userId')}`;
@@ -87,10 +67,10 @@ class Global extends Component {
         axios.get(url) 
             .then(res => {
 
-                console.log(res.data);
+                // console.log(res.data);
                 this.setState({userImages: res.data})
 
-                console.log(this.state.userImages)
+                // console.log(this.state.userImages)
 
                 // Retrieve the last image from the userImages array
                 console.log(this.state.mostRecentUserImage)
@@ -120,15 +100,13 @@ class Global extends Component {
     };
 
     handleInputChange = event => {
-
         event.preventDefault();
         this.setState({comment: event.target.value})
     };
 
     getComments = () => {
         this.setState( { imageId: this.state.mostRecentUserImage._id }, () => {
-            console.log('getting comments')
-            console.log(this.state)
+            // console.log(this.state)
 
             const url = `/api/photo/${this.state.imageId}/comments`;
             // console.log(url)
@@ -137,7 +115,7 @@ class Global extends Component {
     
             axios.get(url)
                 .then(res => {
-                    console.log(res.data, 'comment data');
+                    console.log(res.data, 'comment data')
 
                     // const commentData = res.data.map(res.data.comments)
                     // console.log(commentData)
@@ -153,6 +131,7 @@ class Global extends Component {
         
         let commentObject = {
             author: this.state.userId,
+            authorUserName: this.state.userName,
             body: this.state.comment,
         };
 
@@ -171,6 +150,7 @@ class Global extends Component {
         axios.get('/api/photo')
             .then(res => {
                 console.log(res.data)
+                this.setState({allImages: res.data})
             })
     }
     logout = () => {
@@ -184,17 +164,27 @@ class Global extends Component {
 
             <div className="container">
 
-                {/* {this.logout()} */}
-                <Nav onClick={() => this.setRedirect()} />
-
-                <ImageCard photo={this.state.mostRecentUserImage.url} onClick={this.handleLikeClick}/>
-
-                <CommentForm 
-                    onClick={this.handleCommentAdd}
-                    name="comment"
-                    value={this.state.comment}
-                    onChange={this.handleInputChange}
+                <Nav onClick={() => this.logout()} />
+                {/* <ImageCard photo={this.state.mostRecentUserImage.url} onClick={this.handleLikeClick}/> */}
+                {this.state.allImages.map(image => (
+                    <div>
+                    <ImageCard
+                        id={image._id}
+                        key={image._id}
+                        photo={image.url}
+                        likes={image.likes}
                     />
+
+                    <CommentForm 
+                        onClick={this.handleCommentAdd}
+                        name="comment"
+                        value={this.state.comment}
+                        onChange={this.handleInputChange}
+                    />
+                    </div>
+                ))}
+
+                
             </div> 
         );
     };

@@ -134,7 +134,7 @@ class Question extends Component {
         console.log(j);
         let quest = questions[j].text;
         console.log(this.state.currentQ);
-   
+        
         if (this.state.currentQ === quest) {
             this.randomQuestion() 
         } else {
