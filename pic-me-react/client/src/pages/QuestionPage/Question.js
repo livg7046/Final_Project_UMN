@@ -78,7 +78,6 @@ class Question extends Component {
         timeLeft.sec = diff;
     
         this.setState({...this.state, ...timeLeft})
-      
     
     }
 
@@ -121,7 +120,7 @@ class Question extends Component {
         console.log(j);
         let quest = questions[j].text;
         console.log(this.state.currentQ);
-   
+        
         if (this.state.currentQ === quest) {
             this.randomQuestion() 
         } else {
