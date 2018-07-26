@@ -166,7 +166,6 @@ class Global extends Component {
 
                 <Nav onClick={() => this.logout()} />
                 {/* <ImageCard photo={this.state.mostRecentUserImage.url} onClick={this.handleLikeClick}/> */}
-
                 {this.state.allImages.map(image => (
                     <div>
                     <ImageCard

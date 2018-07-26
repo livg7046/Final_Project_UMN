@@ -4,6 +4,7 @@ import questions from "../../utils/Questions.json";
 import moment from "moment";
 import axios from 'axios';
 import API from "../../utils/API";
+import './Question.css';
 
 class Question extends Component {
     state = {
@@ -20,15 +21,28 @@ class Question extends Component {
         user: '',
         userId: ''
     };
-    
+
+    getDayOfYear = () => {
+        var now = new Date();
+          var start = new Date(now.getFullYear(), 0, 0);
+          var diff = (now - start) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
+          var oneDay = 1000 * 60 * 60 * 24;
+          var day = Math.floor(diff / oneDay);
+          return day
+        }
+
     componentDidMount = () => {
 
-        // console.log(localStorage.getItem('jwtToken'))
-        // console.log(localStorage.getItem('userName'))
-        // console.log(localStorage.getItem('userId'))
-        this.setState({user: localStorage.getItem('userName')})
-        this.setState({userId: localStorage.getItem('userId')})
-
+        // axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+        console.log(localStorage.getItem('jwtToken'))
+        console.log(localStorage.getItem('userName'))
+        console.log(localStorage.getItem('userId'))
+        this.setState({
+            user: localStorage.getItem('userName'),
+            userId: localStorage.getItem('userId'), 
+            currentQ: localStorage.getItem('question') || questions[this.getDayOfYear() % (questions.length-1)].text
+        })
+      
         if (localStorage.getItem('jwtToken')===null) {
             this.props.history.push("/login");
         }
@@ -87,7 +101,7 @@ class Question extends Component {
             time: new Date().toLocaleString()
         });
         // const currentDate = moment(new Date()).format("M/DD/YYYY");
-        if (this.state.time ===`${this.state.currentDate}, 7:44:40 PM`) {
+        if (this.state.time ===`${this.state.currentDate}, 7:51:00 PM`) {
             this.randomQuestion()
         }
         
@@ -124,6 +138,7 @@ class Question extends Component {
         if (this.state.currentQ === quest) {
             this.randomQuestion() 
         } else {
+            localStorage.setItem('question', quest);
             this.setState({currentQ:quest})
         } 
     };
@@ -175,15 +190,19 @@ class Question extends Component {
                     </p>
                 <div>
                     <form>
-                        <label> Answer:
+                        <label>
                             <input 
                             type="text" 
                             name="search"
+                            className="form-control"
+                            id="answer"
+                            placeholder="Answer"
                             value={this.state.search}
                             onChange={this.handleInputChange}
                             />
                         </label>
-                        <button 
+                        <button
+                            className="btn btn-danger"
                             id="getGif"
                             disabled={!(this.state.search)}
                             onClick={this.handleFormSubmit}>
@@ -215,7 +234,7 @@ class Question extends Component {
                 <div className="Noshare">
                     <button className="btn btn-danger btn-lg" id="noshare-btn">Not Today</button>
                 </div>
-                <button onClick={this.randomQuestion.bind(this)}>New Question</button>
+                {/*<button onClick={this.randomQuestion.bind(this)}>New Question</button>*/}
             </div>
         )};
 }
