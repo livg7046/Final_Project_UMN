@@ -28,7 +28,8 @@ import Alert from "../../components/Alert"
       console.log("in alertToggle")
       this.setState({isHidden: false});
       console.log(this.state.isHidden);
-    }
+    };
+
 
     onSubmit = event => {
       event.preventDefault();
@@ -43,7 +44,7 @@ import Alert from "../../components/Alert"
 
           console.log(result);
           console.log(this.state);
-          console.log(this.props);
+          // console.log(this.props);
 
           localStorage.setItem('jwtToken', result.data.token);
           localStorage.setItem('userId', result.data.userId);
@@ -75,7 +76,7 @@ import Alert from "../../components/Alert"
               <div className="form-group">
                   <input type="password" className="form-control" id="loginPasswordInput" placeholder="Enter Password" name="password" value={this.state.password} onChange={this.onInputChange("password")} required></input>
               </div>
-              <button type="button" className="btn" id="loginBtn" onClick={this.onSubmit}>Login</button>
+              <button type="button" className="btn btn-danger" id="loginBtn" onClick={this.onSubmit}>Login</button>
               <br></br>
               {!this.state.isHidden && <Alert />}
               <br></br>

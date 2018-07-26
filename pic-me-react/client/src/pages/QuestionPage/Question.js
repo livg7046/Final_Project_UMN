@@ -4,6 +4,7 @@ import questions from "../../utils/Questions.json";
 import moment from "moment";
 import axios from 'axios';
 import API from "../../utils/API";
+import './Question.css';
 
 class Question extends Component {
     state = {
@@ -31,6 +32,7 @@ class Question extends Component {
         }
 
     componentDidMount = () => {
+
         // axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
         console.log(localStorage.getItem('jwtToken'))
         console.log(localStorage.getItem('userName'))
@@ -40,7 +42,7 @@ class Question extends Component {
             userId: localStorage.getItem('userId'), 
             currentQ: localStorage.getItem('question') || questions[this.getDayOfYear() % (questions.length-1)].text
         })
-
+      
         if (localStorage.getItem('jwtToken')===null) {
             this.props.history.push("/login");
         }
@@ -123,7 +125,7 @@ class Question extends Component {
     handleInputChange = event => {
 
         event.preventDefault();
-        console.log(event);
+        // console.log(event);
         this.setState({search: event.target.value})
     };
 
@@ -178,7 +180,7 @@ class Question extends Component {
     render() {
         return (
             <div className="container">
-                <Nav onClick={() => this.logout()} />
+                {/* <Nav onClick={() => this.logout()} /> */}
                 {/* <h1 className="clock">{this.state.time}</h1> */}
                 <h2 className="clock">{this.state.currentDate}</h2>
                 <h3 className="timer">{this.state.hours} Hours {this.state.min} Minutes {this.state.sec} Seconds Remaining!
@@ -188,15 +190,19 @@ class Question extends Component {
                     </p>
                 <div>
                     <form>
-                        <label> Answer:
+                        <label>
                             <input 
                             type="text" 
                             name="search"
+                            className="form-control"
+                            id="answer"
+                            placeholder="Answer"
                             value={this.state.search}
                             onChange={this.handleInputChange}
                             />
                         </label>
-                        <button 
+                        <button
+                            className="btn btn-danger"
                             id="getGif"
                             disabled={!(this.state.search)}
                             onClick={this.handleFormSubmit}>
@@ -209,6 +215,7 @@ class Question extends Component {
                     <img
                         alt="404 Please Search Again"
                         src={this.state.photo}
+                        
                     />
                 </div>
                     {/* <form>
