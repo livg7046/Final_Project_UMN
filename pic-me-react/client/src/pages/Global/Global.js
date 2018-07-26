@@ -19,7 +19,7 @@ class Global extends Component {
         userId: '',
         imageUrl: '',
         redirect: false,
-        likes: 0
+        likes: 0,
         comments: [
             'Test comment.',
             'This test comment is very llllllllllllllllllllllllllooooooooooooooooooooonnnnnnnnnnnnnnngggggggggggggggggggggg!!!!!',
@@ -184,7 +184,7 @@ class Global extends Component {
 
             <div className="container">
 
-                {this.logout()}
+                {/* {this.logout()} */}
                 <Nav onClick={() => this.setRedirect()} />
 
                 <ImageCard photo={this.state.mostRecentUserImage.url} onClick={this.handleLikeClick}/>
