@@ -37,12 +37,14 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res, ne
 // Edit photo
 router.put('/:id', passport.authenticate('jwt', { session: false }), (req, res, next) => {
     var token = getToken(req.headers);
+    console.log("LOOKHERE!!!!!!!")
+    console.log(req.body)
     if (token) {
         Photo.findOneAndUpdate({ _id: req.params.id }, req.body, (err, photo) => {
             console.log("=== Updating Photo ===")
-            .then(dbPhoto => {
-                res.json(dbPhoto)
-            })
+                if (err) return next(err);
+                res.json(photo)
+            
         })
     } else {
         return res.status(403).send({ success: false, msg: 'Unauthorized.' });
