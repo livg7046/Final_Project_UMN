@@ -4,6 +4,7 @@ import questions from "../../utils/Questions.json";
 import moment from "moment";
 import axios from 'axios';
 import API from "../../utils/API";
+import './Question.css';
 
 class Question extends Component {
     state = {
