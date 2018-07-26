@@ -111,12 +111,12 @@ class UsersPage extends Component {
 
             <div className="container">
                 <Nav onClick={() => this.logout()} />
-                <div className="Pic">
+                {/* <div className="Pic">
                     <img 
                     src={this.state.mostRecentUserImage.url} 
                     alt="alt"/>
-                </div>
-                <ImageCard />
+                </div> */}
+                <ImageCard photo={this.state.mostRecentUserImage.url}/>
                 {/* <CommentForm 
                     onClick={this.handleCommentAdd}
                     name="comment"

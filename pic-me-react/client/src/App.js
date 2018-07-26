@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, } from "react-router-dom";
 import './App.css';
 // import Nav from "./components/Nav";
 import Title from "./components/Title";
+import TitleOnly from "./components/TitleOnly";
 import Question from './pages/QuestionPage';
 import Wrapper from "./components/Wrapper";
 import Login from "./pages/LoginPage/Login";
@@ -45,14 +46,43 @@ class App extends Component {
       <div className="App">
       <Router>
         <Wrapper>
-          <Title 
-            src={(this.state.profilePic)}/>
-          <Route exact path="/" render={(props) => <Login history={props.history} /> } />
-          <Route exact path="/newuser" render={(props) => <NewUser history={props.history} /> } />
-          <Route exact path="/login" render={(props) => <Login history={props.history} /> } />
-          <Route exact path="/question" render={(props) => <Question history={props.history}/> } />
-          <Route exact path="/userpage" render={(props) => <UserPage history={props.history}/> } />
-          <Route exact path="/global" render={(props) => <GlobalPage history={props.history}/> } />
+          
+          <Route exact path="/" render={(props) => (
+            <div>
+            <TitleOnly />
+            <Login history={props.history} /> 
+            </div>
+          )} />
+          <Route exact path="/newuser" render={(props) => (
+            <div>
+            <TitleOnly />
+            <NewUser history={props.history} /> 
+            </div>
+          )} />
+          <Route exact path="/login" render={(props) => (
+            <div>
+            <TitleOnly />
+            <Login history={props.history} /> 
+            </div>
+          )} />
+          <Route exact path="/question" render={(props) => (
+            <div>
+            <Title src={(this.state.profilePic)}/>
+            <Question history={props.history} /> 
+            </div>
+          )} />
+          <Route exact path="/userpage" render={(props) => (
+            <div>
+              <Title src={(this.state.profilePic)}/>
+              <UserPage history={props.history}/>  
+              </div>
+            ) }/>
+          <Route exact path="/global" render={(props) => (
+            <div>
+              <Title src={(this.state.profilePic)}/>
+              <GlobalPage history={props.history}/>  
+              </div>
+            ) }/>
           <Route exact path="/daily" render={(props) => <Daily history={props.history}/> } />
         </Wrapper>
       </Router>

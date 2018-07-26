@@ -7,6 +7,7 @@ const CommentSchema = new Schema({
                 type: mongoose.Schema.Types.ObjectId,
                 ref: 'User'
             },
+    authorUserName: String,
     body: String
 })
 

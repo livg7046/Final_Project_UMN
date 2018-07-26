@@ -43,8 +43,10 @@ router.put('/:id', passport.authenticate('jwt', { session: false }), (req, res, 
         Photo.findOneAndUpdate({ _id: req.params.id }, req.body, (err, photo) => {
             console.log("=== Updating Photo ===")
                 if (err) return next(err);
+
                 res.json(photo)
             
+
         })
     } else {
         return res.status(403).send({ success: false, msg: 'Unauthorized.' });
