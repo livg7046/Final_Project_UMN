@@ -20,14 +20,26 @@ class Question extends Component {
         user: '',
         userId: ''
     };
-    
+
+    getDayOfYear = () => {
+        var now = new Date();
+          var start = new Date(now.getFullYear(), 0, 0);
+          var diff = (now - start) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
+          var oneDay = 1000 * 60 * 60 * 24;
+          var day = Math.floor(diff / oneDay);
+          return day
+        }
+
     componentDidMount = () => {
         // axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
         console.log(localStorage.getItem('jwtToken'))
         console.log(localStorage.getItem('userName'))
         console.log(localStorage.getItem('userId'))
-        this.setState({user: localStorage.getItem('userName')})
-        this.setState({userId: localStorage.getItem('userId')})
+        this.setState({
+            user: localStorage.getItem('userName'),
+            userId: localStorage.getItem('userId'), 
+            currentQ: localStorage.getItem('question') || questions[this.getDayOfYear() % (questions.length-1)].text
+        })
 
         if (localStorage.getItem('jwtToken')===null) {
             this.props.history.push("/login");
@@ -78,7 +90,6 @@ class Question extends Component {
         timeLeft.sec = diff;
     
         this.setState({...this.state, ...timeLeft})
-      
     
     }
 
@@ -88,7 +99,7 @@ class Question extends Component {
             time: new Date().toLocaleString()
         });
         // const currentDate = moment(new Date()).format("M/DD/YYYY");
-        if (this.state.time ===`${this.state.currentDate}, 7:44:40 PM`) {
+        if (this.state.time ===`${this.state.currentDate}, 7:51:00 PM`) {
             this.randomQuestion()
         }
         
@@ -125,6 +136,7 @@ class Question extends Component {
         if (this.state.currentQ === quest) {
             this.randomQuestion() 
         } else {
+            localStorage.setItem('question', quest);
             this.setState({currentQ:quest})
         } 
     };
