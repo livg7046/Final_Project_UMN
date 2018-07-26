@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Nav from "../../components/Nav";
+// import Nav from "../../components/Nav";
 import questions from "../../utils/Questions.json";
 import moment from "moment";
 import axios from 'axios';
@@ -24,25 +24,26 @@ class Question extends Component {
 
     getDayOfYear = () => {
         var now = new Date();
-          var start = new Date(now.getFullYear(), 0, 0);
-          var diff = (now - start) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
-          var oneDay = 1000 * 60 * 60 * 24;
-          var day = Math.floor(diff / oneDay);
-          return day
-        }
+        var start = new Date(now.getFullYear(), 0, 0);
+        var diff = (now - start) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
+        var oneDay = 1000 * 60 * 60 * 24;
+        var day = Math.floor(diff / oneDay);
+        return day
+    };
 
     componentDidMount = () => {
 
         // axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
-        console.log(localStorage.getItem('jwtToken'))
+
         console.log(localStorage.getItem('userName'))
         console.log(localStorage.getItem('userId'))
+
         this.setState({
             user: localStorage.getItem('userName'),
             userId: localStorage.getItem('userId'), 
             currentQ: localStorage.getItem('question') || questions[this.getDayOfYear() % (questions.length-1)].text
         })
-      
+
         if (localStorage.getItem('jwtToken')===null) {
             this.props.history.push("/login");
         }
@@ -55,17 +56,18 @@ class Question extends Component {
         this.intervalID = setInterval(() => this.tick(), 1000);
         this.dateID = setInterval(() => this.dateTicker(moment().add(1,'days').startOf('day')), 1000)
     };
-    componentWillUnmount() {
+
+    componentWillUnmount = () => {
         clearInterval(this.intervalID);
         clearInterval(this.dateID)
     };
 
-    stop() {
+    stop = () => {
         clearInterval(this.dateID)
         // make pretty things appear
-    }
+    };
 
-    dateTicker(midnight) {
+    dateTicker = (midnight) => {
         let diff = (Date.parse(midnight) - Date.parse(new Date())) / 1000;
         
         if (diff <= 0) this.stop();
@@ -93,9 +95,9 @@ class Question extends Component {
     
         this.setState({...this.state, ...timeLeft})
     
-    }
+    };
 
-    tick() {
+    tick= () => {
         /* condition to check if current time is midnight.  iF so, run this.randomQuestion*/
         this.setState({
             time: new Date().toLocaleString()
@@ -113,23 +115,20 @@ class Question extends Component {
 
         console.log("Searching...");
         
-        API.getManyGif(this.state.search)
-            
+        API.getMany(this.state.search)
             .then(res => {
                 console.log(res.data.data)
-                const randomGiphy = (arr) => Math.floor(Math.random() * arr.length)
-                this.setState( { photo: res.data.data[randomGiphy(res.data.data)].images.original.url }, () => console.log(this.state.photo))
+                const random = (arr) => Math.floor(Math.random() * arr.length)
+                this.setState( { photo: res.data.data[random(res.data.data)].images.original.url }, () => console.log(this.state.photo))
             })
     };
 
     handleInputChange = event => {
-
         event.preventDefault();
-        // console.log(event);
         this.setState({search: event.target.value})
     };
 
-    randomQuestion() {
+    randomQuestion = () => {
         let j = Math.floor(Math.random()*questions.length);
         console.log(j);
         let quest = questions[j].text;
@@ -149,7 +148,8 @@ class Question extends Component {
         console.log("Logout!")
     };
 
-    handleShareButton = event => {
+    handleShareButton = () => {
+
         let photoObject = {
             url: this.state.photo,
             caption: this.state.search,
@@ -162,19 +162,14 @@ class Question extends Component {
         console.log(photoObject);
 
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+
         axios.post('/api/photo', photoObject)
             .then(res => {
             
                 console.log(res);
             })
 
-        this.props.history.push("/global");
-        
-        // API.saveUserImage({
-        //     photoObject
-        // })
-        // .then(res => console.log(res))
-        // .catch(err => console.log(err));
+        this.props.history.push("/userpage");
     };
     
     render() {
@@ -186,19 +181,19 @@ class Question extends Component {
                 <h3 className="timer">{this.state.hours} Hours {this.state.min} Minutes {this.state.sec} Seconds Remaining!
                 </h3>
                     <p>
-                    {this.state.currentQ}
+                        {this.state.currentQ}
                     </p>
                 <div>
                     <form>
                         <label>
                             <input 
-                            type="text" 
-                            name="search"
-                            className="form-control"
-                            id="answer"
-                            placeholder="Answer"
-                            value={this.state.search}
-                            onChange={this.handleInputChange}
+                                type="text" 
+                                name="search"
+                                className="form-control"
+                                id="answer"
+                                placeholder="Answer"
+                                value={this.state.search}
+                                onChange={this.handleInputChange}
                             />
                         </label>
                         <button
@@ -210,12 +205,11 @@ class Question extends Component {
                         </button>  
                     </form>
                 </div>
-                
+
                 <div>
                     <img
                         alt="404 Please Search Again"
                         src={this.state.photo}
-                        
                     />
                 </div>
                     {/* <form>
@@ -225,14 +219,14 @@ class Question extends Component {
                     </form>
                 <button id="getDaily">Get Daily</button> */}
 
-                <div className="Randomize">
+                {/* <div className="Randomize">
                     <button className="btn btn-danger btn-lg" id="randomize-btn" onClick={this.handleFormSubmit}>Randomize</button>
-                </div>
+                </div> */}
                 <div className="Share">
                     <button className="btn btn-danger btn-lg" id="share-btn" onClick={this.handleShareButton}>Share </button>
                 </div>
                 <div className="Noshare">
-                    <button className="btn btn-danger btn-lg" id="noshare-btn">Not Today</button>
+                    <button className="btn btn-danger btn-lg" id="noshare-btn" onClick={() =>{this.props.history.push("/global")}}>Not Today</button>
                 </div>
                 {/*<button onClick={this.randomQuestion.bind(this)}>New Question</button>*/}
             </div>

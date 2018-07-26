@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import "./Login.css"
-// import { Link } from 'react-router-dom';
-// import createHistory from "history/createBrowserHistory";
-// const history = createHistory();
 import Alert from "../../components/Alert"
 
   class Login extends Component {
@@ -16,22 +13,27 @@ import Alert from "../../components/Alert"
         message: '',
         isHidden: true
       };
-    }
+    };
 
     onInputChange = propertyName => event => {
+
       this.setState({
+
         [propertyName]: event.target.value
       });
     };
 
     alertToggle() {
+
       console.log("in alertToggle")
+
       this.setState({isHidden: false});
+
       console.log(this.state.isHidden);
     };
 
-
     onSubmit = event => {
+
       event.preventDefault();
 
       const { userName, password } = this.state;
@@ -44,28 +46,34 @@ import Alert from "../../components/Alert"
 
           console.log(result);
           console.log(this.state);
-          // console.log(this.props);
 
           localStorage.setItem('jwtToken', result.data.token);
           localStorage.setItem('userId', result.data.userId);
           localStorage.setItem('userName', result.data.userName);
           
           this.props.history.push('/question');
+
         })
         .catch((error) => {
+
           if(error.response.status === 401) {
+
             this.setState({ message: 'Login failed. Username or password do not match' });
             
             this.alertToggle();
+
             console.log(this.state.message);
+
             this.setState({userName:'', password: ''})
-          }
+          };
         });
 
-    }
+    };
 
     render() {
+
       return (
+
         <div className="container">
           <br></br>
           <br></br>
@@ -84,8 +92,8 @@ import Alert from "../../components/Alert"
           </form>
         </div>
       )
-    }
-  }
+    };
+  };
 
   export default Login;
   
