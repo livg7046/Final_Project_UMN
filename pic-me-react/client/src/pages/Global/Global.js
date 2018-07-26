@@ -6,10 +6,10 @@ import ImageCard from "../../components/ImageCard/ImageCard";
 import CommentForm from "../../components/CommentForm";
 
 class Global extends Component {
-    constructor(props) {
-        super(props);
-        this.handleLikeClick = this.handleLikeClick.bind(this);
-    };
+    // constructor(props) {
+    //     super(props);
+    //     this.handleLikeClick = this.handleLikeClick.bind(this);
+    // };
 
     state={
         userImages: [ ],
@@ -32,27 +32,51 @@ class Global extends Component {
     handleLikeClick = event => {
         event.preventDefault();
         console.log("like button clicked");
-        let photoLikesObject = {
-            _id: this.state._id,
-            likes: this.state.likes
-        };
-        
-        let l = this.state.likes + 1
-        console.log(l);
-        // this.setState({
-        //     likes: l
-        // });
-        this.setState((likes, props) => ({
-            counter: likes.counter + props.increment
-        })); 
-        console.log(l);
-        // axios.put('/api/photo', photoLikesObject)
-        //     .then(res => {
-        //         console.log(res);
-        //     })
-        
+     
         console.log(this.state.likes);
+        
+        this.setState({
+            likes: this.state.likes + 1
+        }, () => {
+            console.log(this.state.likes);
+        //     photoLikesObject = {
+        //     likes: this.state.likes
+        // };
+let photoLikesObject = {
+    likes: this.state.likes
+};
+        axios.put('/api/photo/5b591f2cbdc6d60a7473ddf6', photoLikesObject)
+        .then(res => {
+            console.log("in then statement");
+            // console.log(this.state.likes)
+            console.log(res);
+            console.log(res.data);
+        });
+        //     return photoLikesObject;
+        });        
+        
+        
+        // console.log(photoLikesObject);
+        // this.setState((likes, props) => ({
+        //     counter: likes.counter + props.increment
+        // })); 
+
+        
+        
     };
+
+    // setRedirect = () => {
+    //     this.setState({
+    //         redirect:true
+    //     })
+    // };
+
+    logout = () => {
+        localStorage.removeItem('jwtToken');
+        window.location.reload();
+        return <Redirect to='/login'/>
+        };
+    
 
     componentDidMount = () => {
 
@@ -70,24 +94,31 @@ class Global extends Component {
                 // console.log(res.data);
                 this.setState({userImages: res.data})
 
-                // console.log(this.state.userImages)
 
-                // Retrieve the last image from the userImages array
-                console.log(this.state.mostRecentUserImage)
-                console.log(this.state.mostRecentUserImage.likes)
-                this.setState({likes: this.state.mostRecentUserImage.likes})
-                console.log(this.state.likes)
-
-                // console.log(res.data);
-                // console.log(this.state.userImages)
-
-                // Retrieve the last image from the userImages array
+                console.log(this.state.userImages)
                 this.setState({
                     mostRecentUserImage: (res.data[res.data.length-1]),
                     userImages: res.data
                 }, () => {
                     this.getComments();
                 });
+
+                // console.log(this.state.userImages)
+
+
+                // Retrieve the last image from the userImages array
+                // console.log(this.state.mostRecentUserImage)
+                // console.log(this.state.mostRecentUserImage.likes)
+                this.setState({likes: this.state.mostRecentUserImage.likes}, () => {
+                    console.log(this.state.mostRecentUserImage)
+                console.log(this.state.likes)
+                })
+
+                // console.log(res.data);
+                // console.log(this.state.userImages)
+
+                // Retrieve the last image from the userImages array
+
                 // console.log(this.state.mostRecentUserImage);
             })
             .catch((error) => {
@@ -152,17 +183,18 @@ class Global extends Component {
                 console.log(res.data)
                 this.setState({allImages: res.data})
             })
-    }
-    logout = () => {
-        localStorage.removeItem('jwtToken');
-        window.location.reload();
-        console.log("Logout!")
     };
 
     render() {
         return (
 
             <div className="container">
+
+
+                {/* {this.logout()} */}
+                /*<Nav onClick={() => this.logout()} />
+
+                <ImageCard photo={this.state.mostRecentUserImage.url} onClick={this.handleLikeClick}/>*/
 
                 <Nav onClick={() => this.logout()} />
                 {/* <ImageCard photo={this.state.mostRecentUserImage.url} onClick={this.handleLikeClick}/> */}
