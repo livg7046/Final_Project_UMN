@@ -11,11 +11,17 @@ class Global extends Component {
         userName: '',
         userId: '',
         imageUrl: '',
-        imageId: '',
-        allImages: [ ]
+        imageId: 0,
+        allImages: [ ],
+        imageLikedBy: [ ],
+        image: ''
     };
 
     componentDidMount = () => {
+
+        if (localStorage.getItem('jwtToken')===null) {
+            this.props.history.push("/login");
+        }
 
         this.setState({userName: localStorage.getItem('userName')})
         this.setState({userId: localStorage.getItem('userId')})
@@ -23,38 +29,52 @@ class Global extends Component {
         this.getAllPhotos();
     };
 
-    handleLikeClick = event => {
-        event.preventDefault();
+    handleLikeClick = id => {
+
+        // event.preventDefault();
         console.log("like button clicked");
+
+        console.log(id)
+        const thisId = id;
+
+        console.log(thisId);
+        this.setState({imageId: thisId})
+        console.log(this.state.imageId)
+
+        const user = {
+            usersWhoLiked: this.state.userName
+        }
+        // const like = 1
+
+        axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+
+        axios.put('/api/photo/likes/' + id, user)
+            .then((result) => {
+                console.log(result.data.usersWhoLiked.length)
+                const likes = result.data.usersWhoLiked.length
+                console.log(likes);
+                this.updatePhotoLikes(likes);
+            })
     
-        console.log(this.state.likes);
-        
-        this.setState({
-            likes: this.state.likes + 1
-        }, () => {
-            console.log(this.state.likes);
-        //     photoLikesObject = {
-        //     likes: this.state.likes
-        // };
-let photoLikesObject = {
-    likes: this.state.likes
-};
-        axios.put('/api/photo/5b591f2cbdc6d60a7473ddf6', photoLikesObject)
-        .then(res => {
-            console.log("in then statement");
-            // console.log(this.state.likes)
-            console.log(res);
-            console.log(res.data);
-        });
-        //     return photoLikesObject;
-        });        
-        
-        
-        // console.log(photoLikesObject);
-        // this.setState((likes, props) => ({
-        //     counter: likes.counter + props.increment
-        // })); 
+        // axios.put('/api/photo/likes/' + id, like)
+        //     .then((result) => {
+        //         console.log(result)
+        //         // this.updatePhotoLikes(id);
+        //     })
     };
+
+    updatePhotoLikes = (likes) => {
+        console.log("Likes Updated")
+        this.setState({likes: likes})
+        console.log(this.state.likes)
+        window.location.reload();
+        // axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+
+        // axios.put('/api/photo/' + id, 5)
+        //     .then((res) => {
+        //         window.location.reload();
+        //     })
+    }
 
     handleInputChange = event => {
         event.preventDefault();
@@ -131,8 +151,12 @@ let photoLikesObject = {
                         key={image._id}
                         photo={image.url}
                         user={image.user}
-                        likes={image.likes}
+                        likes={image.usersWhoLiked.length}
                         caption={image.caption}
+                        liked="false"
+                        usersWhoLiked={image.usersWhoLiked}
+                        // onClick={this.handleLikeClick.bind(this)}
+                        handleLikeClick={this.handleLikeClick}
                     />
                     /* <CommentForm 
                         onClick={this.handleCommentAdd}

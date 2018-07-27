@@ -12,7 +12,7 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
         console.log("=== Getting All Photos ===")
         Photo
         .find(req.query)
-        .sort({ likes: -1 })
+        // .sort({ likes: -1 })
         .then(photos => res.json(photos))
     } else {
         return res.status(403).send({ success: false, msg: 'Unauthorized.' });
@@ -47,6 +47,31 @@ router.put('/:id', passport.authenticate('jwt', { session: false }), (req, res, 
             
 
         })
+    } else {
+        return res.status(403).send({ success: false, msg: 'Unauthorized.' });
+    }
+});
+
+//Edit photo likes
+router.put('/likes/:id', passport.authenticate('jwt', { session: false }), (req, res, next) => {
+    var token = getToken(req.headers);
+    // console.log(req.body)
+    if (token) {
+        Photo.findOneAndUpdate({ _id: req.params.id }, {$push: {usersWhoLiked: req.body}}, (err, photo) => {
+        // Photo.findOneAndUpdate({ _id: req.params.id }, {$inc: {likes: req.body}}, (err, photo) => {
+            console.log("=== Updating Users Who Liked ===")
+                if (err) return next(err);
+
+                res.json(photo)
+        })
+        // .then(() => {
+        //     Photo.findOneAndUpdate({_id: req.params.id } , req.body, (err, photo) => {
+        //         console.log("=== Updating Like Amount ===")
+        //             if (err) return next(err);
+
+        //             res.json(photo)
+        //     })
+        // })
     } else {
         return res.status(403).send({ success: false, msg: 'Unauthorized.' });
     }

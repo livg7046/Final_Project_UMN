@@ -11,10 +11,11 @@ const ImageCard = props => (
                 alt = "gif"
                 user = {props.user}
                 caption = {props.caption}
-                likes = {props.likes}    
+                likes = {props.likes}
+                liked = {props.liked}
             />
             <div className="like-btn">
-                <button className="btn like" type="button" onClick={props.onClick}><i className="far fa-heart fa-3x"></i></button>
+                <button className="btn like" type="button" onClick={() => props.handleLikeClick(props.id)}><i className="far fa-heart fa-3x"></i></button>
                 {/*<button className="btn thumbsup" type="button"><i className="fas fa-thumbs-up fa-2x"></i></button>*/}
             </div>
         </div>
