@@ -17,6 +17,9 @@ const PhotoSchema = new Schema({
     likes: {
         type: Number
     },
+    usersWhoLiked: {
+        type: Array,
+    },
     date: {
         type: Date,
         default: Date.now()
@@ -25,15 +28,6 @@ const PhotoSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User"
     },
-    // comments: [
-    //     {
-    //         author: {
-    //             type: mongoose.Schema.Types.ObjectId,
-    //             ref: 'User'
-    //         },
-    //         body: String
-    //     }
-    // ],
     comments: [
         {
             type: Schema.Types.ObjectId,

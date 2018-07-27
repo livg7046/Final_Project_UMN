@@ -20,6 +20,10 @@ class UsersPage extends Component {
 
     componentDidMount = () => {
 
+        if (localStorage.getItem('jwtToken')===null) {
+            this.props.history.push("/login");
+        }
+
         this.setState({user: localStorage.getItem('userName')})
         this.setState({userId: localStorage.getItem('userId')})
 
