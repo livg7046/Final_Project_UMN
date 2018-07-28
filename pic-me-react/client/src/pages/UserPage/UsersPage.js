@@ -78,8 +78,17 @@ class UsersPage extends Component {
 
     logout = () => {
         localStorage.removeItem('jwtToken');
-        window.location.reload();
+        window.location.href = "/"
         console.log("Logout!")
+    };
+
+    handleLikeClick = id => {
+
+        // event.preventDefault();
+        console.log("like button clicked");
+
+        console.log(id)
+
     };
 
     render() {
@@ -92,6 +101,7 @@ class UsersPage extends Component {
                     caption={this.state.mostRecentUserImage.caption}
                     likes={this.state.mostRecentUserImage.likes}
                     user="YOU !"
+                    handleLikeClick={this.handleLikeClick}
                 />
                 <form> 
                     <h5>Update Caption Here</h5>
