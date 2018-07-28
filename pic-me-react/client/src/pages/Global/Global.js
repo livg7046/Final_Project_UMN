@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import axios from 'axios';
 import Nav from "../../components/Nav";
 import ImageCard from "../../components/ImageCard/ImageCard";
+import update  from 'immutability-helper';
 // import CommentForm from "../../components/CommentForm";
 
 class Global extends Component {
@@ -49,32 +50,22 @@ class Global extends Component {
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
 
         axios.put('/api/photo/likes/' + id, user)
-            .then((result) => {
-                console.log(result.data.usersWhoLiked.length)
-                const likes = result.data.usersWhoLiked.length
-                console.log(likes);
-                this.updatePhotoLikes(likes);
-            })
+        .then((result) => {
+            
+            let updatedImageIndex =  this.state.allImages.findIndex(function(i) { 
+                return i._id == id; 
+            });
+            console.log('hey')
+            console.log(this.state.allImages);
+            console.log(updatedImageIndex)
+
+            this.state.allImages.splice(updatedImageIndex,1,result.data);
+            this.setState({allImages:this.state.allImages});
+        })
     
-        // axios.put('/api/photo/likes/' + id, like)
-        //     .then((result) => {
-        //         console.log(result)
-        //         // this.updatePhotoLikes(id);
-        //     })
+       
     };
 
-    updatePhotoLikes = (likes) => {
-        console.log("Likes Updated")
-        this.setState({likes: likes})
-        console.log(this.state.likes)
-        window.location.reload();
-        // axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
-
-        // axios.put('/api/photo/' + id, 5)
-        //     .then((res) => {
-        //         window.location.reload();
-        //     })
-    }
 
     handleInputChange = event => {
         event.preventDefault();
@@ -127,13 +118,14 @@ class Global extends Component {
         axios.get('/api/photo')
             .then(res => {
                 console.log(res.data)
+               // let sortedData = 
                 this.setState({allImages: res.data})
             })
     };
 
     logout = () => {
         localStorage.removeItem('jwtToken');
-        window.location.reload();
+        window.location.href = "/"
         console.log("Logout!")
     };
 
@@ -144,7 +136,9 @@ class Global extends Component {
 
                 <Nav onClick={() => this.logout()} />
                 <h1>Global Leaderboard</h1>
-                {this.state.allImages.map(image => (
+                {this.state.allImages
+                    .sort((a, b) => b.usersWhoLiked.length - a.usersWhoLiked.length)
+                    .map(image => (
 
                     <ImageCard
                         id={image._id}
