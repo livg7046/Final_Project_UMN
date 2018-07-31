@@ -27,7 +27,8 @@ app.use('/api/photo', passport.authenticate('jwt', {session: false}), photo);
 app.use('/api/auth', auth);
 
 // Connect to the Mongo database
-mongoose.connect("mongodb://localhost:27017/PicMedb", { promiseLibrary: require('bluebird'), useNewUrlParser: true })
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/PicMedb";
+mongoose.connect(process.env.MONGODB_URI, { promiseLibrary: require('bluebird'), useNewUrlParser: true })
   .then(() =>  console.log('Connected to MongoDB'))
   .catch((err) => console.error(err));
 
