@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
 // import Title from "./components/Title";
 import TitleOnly from "./components/TitleOnly";
@@ -43,7 +43,7 @@ class App extends Component {
       <div className="App">
       <Router>
         <Wrapper>
-          
+          <Switch>
           <Route exact path="/" render={(props) => (
             <div>
             <TitleOnly />
@@ -85,7 +85,7 @@ class App extends Component {
               <GlobalPage history={props.history}/>  
               </div>
             ) }/>
-
+          </Switch>
         </Wrapper>
       </Router>
 
