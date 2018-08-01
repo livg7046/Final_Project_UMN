@@ -4,6 +4,7 @@ require("./config/passport");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
+const path = require("path");
 mongoose.Promise = require("bluebird");
 
 // Port
