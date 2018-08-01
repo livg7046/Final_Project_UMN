@@ -16,7 +16,6 @@ const app = express();
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static("public"));
 
 // Routes
 const photo = require('./routes/photos');
@@ -28,7 +27,8 @@ app.use('/api/auth', auth);
 
 // Connect to the Mongo database
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/PicMedb";
-mongoose.connect(process.env.MONGODB_URI, { promiseLibrary: require('bluebird'), useNewUrlParser: true })
+
+mongoose.connect(MONGODB_URI, { promiseLibrary: require('bluebird'), useNewUrlParser: true })
   .then(() =>  console.log('Connected to MongoDB'))
   .catch((err) => console.error(err));
 

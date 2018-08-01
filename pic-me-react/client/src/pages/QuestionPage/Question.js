@@ -57,10 +57,10 @@ class Question extends Component {
         this.dateID = setInterval(() => this.dateTicker(moment().add(1,'days').startOf('day')), 1000)
     };
 
-    componentWillUnmount = () => {
-        clearInterval(this.intervalID);
-        clearInterval(this.dateID)
-    };
+    // componentWillUnmount = () => {
+    //     clearInterval(this.intervalID);
+    //     clearInterval(this.dateID)
+    // };
 
     stop = () => {
         clearInterval(this.dateID)

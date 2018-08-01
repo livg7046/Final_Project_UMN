@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Photo = require('../models/Photo.js');
+const User = require("../models/User");
 const Comment = require('../models/Comment.js');
 const passport = require('passport');
 require('../config/passport')(passport);
@@ -149,6 +150,19 @@ router.delete('/:id/comments', passport.authenticate('jwt', { session: false }),
     } else {
         return res.status(403).send({ success: false, msg: 'Unauthorized.' });
     }
+});
+
+// Get user profile picture
+router.get('/users/:id', passport.authenticate('jwt', { session: false }), (req, res, next) => {
+    const token = getToken(req.headers);
+    if (token) {
+        User.find({_id: req.params.id }, (err, UserData) => {
+            console.log("UserData: " + UserData)
+            res.json(UserData)
+        });
+    } else {
+        return res.status(403).send({ success: false, msg: 'Unauthorized.' });
+    }    
 });
 
 getToken = headers => {
