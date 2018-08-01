@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from 'axios';
 import "./Login.css"
 import Alert from "../../components/Alert"
+import TitleOnly from "../../components/TitleOnly";
 
   class Login extends Component {
 
@@ -75,6 +76,7 @@ import Alert from "../../components/Alert"
       return (
 
         <div className="container">
+          <TitleOnly />
           <br></br>
           <br></br>
           <form className="form-signin" onSubmit={this.onSubmit}>
