@@ -1,9 +1,9 @@
-/*@import url('https://fonts.googleapis.com/css?family=Merienda');*/
+@import url('https://fonts.googleapis.com/css?family=Merienda');
 @import url('https://fonts.googleapis.com/css?family=Gaegu');
 
 #title {
     /* color: orange;*/
-    /*font-family: 'Monoton';*/
+    font-family: 'Monoton';
     font-weight: 500;
     font-size: 300%;
     margin-bottom: 0;
@@ -13,7 +13,7 @@
 
     font-size: 60px;
     /*font-family: 'Merienda', cursive;*/
-    font-family: 'Gaegu', cursive;
+    /* font-family: 'Gaegu', cursive; */
     /* background-color: blue; */
     /* text-shadow: 1px 1px royalblue; */
 }

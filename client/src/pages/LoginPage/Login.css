@@ -17,8 +17,20 @@
 
 #link {
     color: coral;
+    text-shadow: 0.5px 0.5px darkblue;
 }
 
 #link:hover {
 	color: lightsalmon;
+}
+
+.form-control {
+    border-style: inset;
+
+}
+
+.form-control:focus {   
+    -webkit-box-shadow: 0 0 0 0.1rem #adbbe4 !important;
+    box-shadow: 1px 1px 25px 8px #D9D9DB !important;
+    border-color: #adbbe4 !important;
 }

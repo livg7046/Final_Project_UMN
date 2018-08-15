@@ -5,6 +5,7 @@ import moment from "moment";
 import axios from 'axios';
 import API from "../../utils/API";
 import './Question.css';
+import Countdown from "../../components/CountdownTimer";
 
 class Question extends Component {
     state = {
@@ -117,11 +118,16 @@ class Question extends Component {
         
         API.getMany(this.state.search)
             .then(res => {
-                console.log(res.data.data)
-                const random = (arr) => Math.floor(Math.random() * arr.length)
-                this.setState( { photo: res.data.data[random(res.data.data)].images.original.url }, () => console.log(this.state.photo))
+                console.log(res.data.data.length)
+                if (res.data.data.length > 0) {
+                    
+                    const random = (arr) => Math.floor(Math.random() * arr.length)
+                    this.setState( { photo: res.data.data[random(res.data.data)].images.original.url }, () => console.log(this.state.photo))
+                } else  
+                    this.setState({photo: "http://www.arihav.com/products/pictures/pna.jpg"});
             })
-    };
+};
+    
 
     handleInputChange = event => {
         event.preventDefault();
@@ -175,61 +181,48 @@ class Question extends Component {
     render() {
         return (
             <div className="container">
-                {/* <Nav onClick={() => this.logout()} /> */}
-                {/* <h1 className="clock">{this.state.time}</h1> */}
-                <h2 className="clock">{this.state.currentDate}</h2>
-                <h3 className="timer">{this.state.hours} Hours {this.state.min} Minutes {this.state.sec} Seconds Remaining!
-                </h3>
-                    <p>
-                        {this.state.currentQ}
-                    </p>
-                <div>
-                    <form>
-                        <label>
-                            <input 
-                                type="text" 
-                                name="search"
-                                className="form-control"
-                                id="answer"
-                                placeholder="Answer"
-                                value={this.state.search}
-                                onChange={this.handleInputChange}
-                            />
-                        </label>
-                        <button
-                            className="btn btn-danger"
-                            id="getGif"
-                            disabled={!(this.state.search)}
-                            onClick={this.handleFormSubmit}>
-                            Search
-                        </button>  
-                    </form>
-                </div>
-
+                <Countdown
+                    hours={this.state.hours}
+                    min={this.state.min}
+                    sec={this.state.sec}
+                    currentQ={this.state.currentQ}
+                />
+                <form>
+                    <label>
+                        <input 
+                            type="text" 
+                            name="search"
+                            className="form-control"
+                            id="answer"
+                            placeholder="Answer"
+                            value={this.state.search}
+                            onChange={this.handleInputChange}
+                        />
+                    </label>
+                    <button
+                        className="btn btn-danger"
+                        id="getGif"
+                        disabled={!(this.state.search)}
+                        onClick={this.handleFormSubmit}>
+                        Search
+                    </button>  
+                </form>
                 <div>
                     <img
                         alt="404 Please Search Again"
                         src={this.state.photo}
                     />
                 </div>
-                    {/* <form>
-                        <label> Answer:
-                        <input type="text" name="name" />
-                        </label>
-                    </form>
-                <button id="getDaily">Get Daily</button> */}
 
-                {/* <div className="Randomize">
-                    <button className="btn btn-danger btn-lg" id="randomize-btn" onClick={this.handleFormSubmit}>Randomize</button>
-                </div> */}
-                <div className="Share">
+                {/* <div className="Share"> */}
                     <button className="btn btn-danger btn-lg" id="share-btn" onClick={this.handleShareButton}>Share </button>
-                </div>
-                <div className="Noshare">
+                {/* </div> */}
+                {/* <div className="Noshare"> */}
                     <button className="btn btn-danger btn-lg" id="noshare-btn" onClick={() =>{this.props.history.push("/global")}}>Not Today</button>
-                </div>
+                {/* </div> */}
                 {/*<button onClick={this.randomQuestion.bind(this)}>New Question</button>*/}
             </div>
+            
         )};
 }
 
