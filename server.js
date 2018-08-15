@@ -19,10 +19,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 if (process.env.NODE_ENV === "production") {
-  //app.use(express.static("client/build"));
-  app.use(express.static("public"));
+  app.use(express.static("client/build"));
+  //app.use(express.static("public"));
 }
-// app.get('*', (req, res) => res.sendFile(path.resolve('client/build', 'index.html')))
+
 // Routes
 const photo = require('./routes/photos');
 // const likes = require('./routes/likes');
@@ -38,6 +38,7 @@ mongoose.connect(MONGODB_URI, { promiseLibrary: require('bluebird'), useNewUrlPa
   .then(() =>  console.log('Connected to MongoDB'))
   .catch((err) => console.error(err));
 
+app.get('*', (req, res) => res.sendFile(path.resolve('client/build', 'index.html')))
 // Start the server
 app.listen(PORT, function() {
   console.log("App Running on Port " + PORT + "!");
