@@ -32,12 +32,13 @@ app.use('/api/photo', passport.authenticate('jwt', {session: false}), photo);
 app.use('/api/auth', auth);
 
 // Connect to the Mongo database
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/PicMedb";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://heroku_d996xwcr:t6s22p42gn3rn3po22c23oq1fr@ds263948.mlab.com:63948/heroku_d996xwcr";
 
 mongoose.connect(MONGODB_URI, { promiseLibrary: require('bluebird'), useNewUrlParser: true })
   .then(() =>  console.log('Connected to MongoDB'))
   .catch((err) => console.error(err));
 
+//This line is key to having API routes work in heroku
 app.get('*', (req, res) => res.sendFile(path.resolve('client/build', 'index.html')))
 // Start the server
 app.listen(PORT, function() {

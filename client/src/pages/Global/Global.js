@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import axios from 'axios';
 import Nav from "../../components/Nav";
 import ImageCard from "../../components/ImageCard/ImageCard";
-// import update  from 'immutability-helper';
+import update  from 'immutability-helper';
 // import CommentForm from "../../components/CommentForm";
 
 class Global extends Component {
@@ -53,7 +53,7 @@ class Global extends Component {
         .then((result) => {
             
             let updatedImageIndex =  this.state.allImages.findIndex(function(i) { 
-                return i._id === id; 
+                return i._id == id; 
             });
             console.log('hey')
             console.log(this.state.allImages);

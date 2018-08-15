@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import TitleOnly from "../../components/TitleOnly";
 import Uploader from "../../components/Uploader/Uploader";
 import "./NewUser.css"
 
@@ -47,7 +46,6 @@ class NewUser extends Component {
     render() {
       return (
         <div>
-          <TitleOnly />
           <div className="container">
           <br></br>
           <h3>Create a New Account</h3>
