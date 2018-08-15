@@ -24,7 +24,7 @@ class UsersPage extends Component {
             this.props.history.push("/login");
         }
 
-        this.setState({user: localStorage.getItem('userName')})
+        this.setState({userName: localStorage.getItem('userName')})
         this.setState({userId: localStorage.getItem('userId')})
 
         this.getUserImages();
@@ -95,7 +95,7 @@ class UsersPage extends Component {
         return (
             <div className="container">
                 <Nav onClick={() => this.logout()} />
-                <h1>{this.state.user}'s Photo of the Day</h1>
+                <h1>{this.state.userName}'s Photo of the Day</h1>
                 <ImageCard 
                     photo={this.state.mostRecentUserImage.url}
                     caption={this.state.mostRecentUserImage.caption}
