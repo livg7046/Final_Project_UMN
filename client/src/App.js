@@ -24,7 +24,7 @@ class App extends Component {
   }
 
   getUsers() {
-    axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+    //axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
     axios.get(`/api/auth/users/${localStorage.getItem('userId')}`)
     .then(res => {
       const user = res.data;
