@@ -20,20 +20,20 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    this.getUsers();
+    //this.getUsers();
   }
 
-  getUsers() {
-    axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
-    axios.get(`/api/auth/users/${localStorage.getItem('userId')}`)
-    .then(res => {
-      const user = res.data;
-      this.setState({ user: user });
-      this.setState({ profilePic: user[0].profileUrl});
-      console.log(user);
+  // getUsers() {
+  //   //axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+  //   axios.get(`/api/auth/users/${localStorage.getItem('userId')}`)
+  //   .then(res => {
+  //     const user = res.data;
+  //     this.setState({ user: user });
+  //     this.setState({ profilePic: user[0].profileUrl});
+  //     console.log(user);
       
-      })
-  }
+  //     })
+  // }
 
 
   render() {

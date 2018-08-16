@@ -37,20 +37,17 @@ import Alert from "../../components/Alert"
       event.preventDefault();
 
       const { userName, password } = this.state;
-      console.log(userName, password);
-
+    
       axios.post('/api/auth/login', { userName, password })
         .then((result) => {
           
           this.setState({ message: 'Login success!'});
 
-          console.log(result);
-          console.log(this.state);
-
           localStorage.setItem('jwtToken', result.data.token);
           localStorage.setItem('userId', result.data.userId);
           localStorage.setItem('userName', result.data.userName);
-          
+          localStorage.setItem('profilePic', result.data.profilePic);
+         
           this.props.history.push('/question');
 
         })

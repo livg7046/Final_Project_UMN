@@ -36,9 +36,6 @@ class Question extends Component {
 
         // axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
 
-        console.log(localStorage.getItem('userName'))
-        console.log(localStorage.getItem('userId'))
-
         this.setState({
             user: localStorage.getItem('userName'),
             userId: localStorage.getItem('userId'), 
