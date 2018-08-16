@@ -7,5 +7,7 @@ p {
     font-family: 'Over the Rainbow', cursive; 
     font-weight: bolder;
     font-size: 300%;
-    color: blue;
+    color: darkblue;
+    text-shadow: 2px 2px 8px whitesmoke;
+
 }

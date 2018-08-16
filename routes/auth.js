@@ -54,16 +54,16 @@ router.post('/login', (req, res) => {
     });
 });
 
-// router.get('/users/:id', passport.authenticate('jwt', { session: false }), (req, res, next) => {
-//     const token = getToken(req.headers);
-//     if (token) {
-//         User.find({_id: req.params.id }, (err, UserData) => {
-//             console.log("UserData: " + UserData)
-//             res.json(UserData)
-//         });
-//     } else {
-//         return res.status(403).send({ success: false, msg: 'Unauthorized.' });
-//     }    
-// })
+router.get('/users/:id', passport.authenticate('jwt', { session: false }), (req, res, next) => {
+    const token = getToken(req.headers);
+    if (token) {
+        User.find({_id: req.params.id }, (err, UserData) => {
+            console.log("UserData: " + UserData)
+            res.json(UserData)
+        });
+    } else {
+        return res.status(403).send({ success: false, msg: 'Unauthorized.' });
+    }    
+})
 
 module.exports = router;

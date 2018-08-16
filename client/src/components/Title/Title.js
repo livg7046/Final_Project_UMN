@@ -7,10 +7,10 @@ const Title = (props) => (
             <div className="text-left col-8">
                 <h1 id="title" >PicMe</h1>
             </div>
-            <div className="text-right col-4">
-                <button className="text-right btn btn-lg btn-link" >
+            <div className="text-right col-4" id="userPic">
+                
                     <img className="rounded-circle" id="profile-pic-icon" src={props.src} alt="img"></img>
-                </button>
+                
             </div>
         </div>
     </nav>

@@ -35,7 +35,6 @@
 
 #profile-pic-icon {
 
-    width: 80%;
     box-shadow: 0 3px 6px rgba(0,0,0,0.25), 0 3px 6px rgba(0,0,0,0.32);
 
 }
@@ -55,9 +54,9 @@
     padding: 2%;
 }
 
-.btn-link {
+#userPic {
 
-    height: auto;
+    height: 80px;
     width: 80px;
     padding: 0%;
     align-items: center;
